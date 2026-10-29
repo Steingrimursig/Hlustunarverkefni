@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heimurinn og þjóðsögurnar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800&display=swap">
+<style>
+/* Útlit: fjólublár KrakkaRÚV-grunnur, gulur aðallitur, litríkar áherslur.
+   Tveir heimar: Heimurinn (hnöttur) og Þjóðsögukistan (tröllamynd). */
+:root{
+  --plum:#2a0f4f;      /* bakgrunnur */
+  --violet:#4b1d8c;    /* flötur */
+  --lilac:#7b4fd1;     /* rammar/áherslur */
+  --sun:#ffd21f;       /* KrakkaRÚV-gulur */
+  --pink:#ff5fa2;
+  --teal:#33d6c4;
+  --ink:#fff8e6;       /* texti */
+  --muted:#cdbdf0;
+  --display:"Lilita One","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--plum);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Haus */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(circle at 12% 20%,rgba(255,210,31,.25) 0 6px,transparent 7px),
+  radial-gradient(circle at 80% 70%,rgba(255,95,162,.35) 0 5px,transparent 6px),
+  radial-gradient(circle at 45% 85%,rgba(51,214,196,.35) 0 4px,transparent 5px),
+  linear-gradient(160deg,var(--violet),var(--plum));}
+.hero .wrap{padding-block:48px 40px;display:grid;gap:12px}
+.badge{justify-self:start;background:var(--sun);color:var(--plum);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,7vw,4.4rem);line-height:1;margin:0;text-wrap:balance}
+h1 .y{color:var(--sun)}
+h1 .p{color:var(--pink)}
+.lead{max-width:58ch;color:var(--muted);margin:0;font-size:1.08rem}
+
+/* Flipar */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.tab{font:800 1rem var(--body);color:var(--ink);background:transparent;border:2px solid var(--lilac);padding:8px 18px;border-radius:999px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:var(--plum)}
+.tab:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+/* Heimar */
+main .wrap{display:grid;gap:56px;padding-block:40px 64px}
+.world{display:grid;gap:22px}
+.banner{position:relative;border-radius:22px;overflow:hidden;min-height:220px;display:flex;align-items:flex-end}
+.banner .txt{position:relative;padding:22px 24px;display:grid;gap:4px;max-width:44ch}
+.banner h2{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,5vw,2.8rem);margin:0;line-height:1.05}
+.banner p{margin:0;color:var(--ink);opacity:.92}
+.kicker{font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+
+.b-world{background:radial-gradient(circle at 85% 40%,#3b2a9e,transparent 60%),linear-gradient(120deg,#1d0b3d,#3a1673)}
+.b-world .kicker{color:var(--teal)}
+.globe{position:absolute;right:-30px;top:50%;transform:translateY(-50%);width:min(300px,62%);height:auto;opacity:.95}
+.globe .spin{animation:spin 40s linear infinite;transform-origin:150px 150px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.b-saga{background:#120a1f}
+.b-saga img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 30%}
+.b-saga::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,8,48,.92) 0%,rgba(26,8,48,.6) 45%,rgba(26,8,48,0) 80%)}
+.b-saga .txt{z-index:1}
+.b-saga .kicker{color:var(--sun)}
+.b-saga{min-height:300px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:var(--violet);border:2px solid rgba(123,79,209,.6);border-radius:18px;padding:20px;display:grid;gap:12px;align-content:start;min-width:0}
+.world[data-key="heimur"] .card{border-top:6px solid var(--teal)}
+.world[data-key="saga"] .card{border-top:6px solid var(--sun)}
+.world[data-key="sagan"] .card{border-top:6px solid var(--pink)}
+.b-hist{background:radial-gradient(circle at 82% 35%,#7a2a6e,transparent 60%),linear-gradient(120deg,#2a0f4f,#5a1a5e)}
+.b-hist .kicker{color:var(--pink)}
+.pyr{position:absolute;right:-10px;bottom:0;width:min(320px,64%);height:auto}
+.meta{display:flex;flex-wrap:wrap;gap:8px;font-size:.82rem;font-weight:700;color:var(--muted)}
+.chip{background:rgba(255,248,230,.1);padding:3px 10px;border-radius:999px;font-variant-numeric:tabular-nums}
+.chip.ser{background:rgba(255,210,31,.16);color:var(--sun)}
+.card h3{font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.15;margin:0;text-wrap:balance}
+.card p{margin:0;color:var(--muted);font-size:.98rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:800 .98rem var(--body);text-decoration:none;padding:10px 16px;border-radius:12px;border:2px solid transparent}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.dl{background:var(--sun);color:var(--plum);box-shadow:0 4px 0 #c99d00}
+.btn.dl:hover{transform:translateY(-1px);box-shadow:0 5px 0 #c99d00}
+.btn.dl:active{transform:translateY(3px);box-shadow:0 1px 0 #c99d00}
+.btn.listen{border-color:var(--ink);color:var(--ink)}
+.btn.listen:hover{background:var(--ink);color:var(--plum)}
+.empty{color:var(--muted);font-weight:700;border:2px dashed var(--lilac);border-radius:18px;padding:18px;margin:0}
+
+.heild{display:grid;gap:14px;margin-top:10px}
+.heild h3.sec{font-family:var(--display);font-weight:400;font-size:1.7rem;margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.tag{font:800 .75rem var(--body);letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:var(--plum);padding:4px 10px;border-radius:999px}
+.feature{background:linear-gradient(135deg,var(--violet),#3a1673);border:2px solid var(--sun);border-radius:22px;padding:24px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px}
+.feature h4{font-family:var(--display);font-weight:400;font-size:2rem;line-height:1.05;margin:0 0 4px;color:var(--sun)}
+.feature .sub{font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;color:var(--pink);margin:0 0 10px}
+.feature p{margin:0 0 12px;color:var(--ink);max-width:60ch}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:start}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;background:rgba(42,15,79,.55);border-radius:12px;padding:10px 12px;font-size:.95rem}
+.steps b{font-family:var(--display);font-weight:400;color:var(--sun);font-size:1.1rem;line-height:1.3}
+.feature .actions{margin-top:6px}
+@media (max-width:760px){.feature{grid-template-columns:1fr}}
+footer{border-top:2px solid var(--violet)}
+footer .wrap{padding-block:22px;color:var(--muted);font-size:.88rem;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){.globe .spin{animation:none}.btn{transition:none}}
+@media (max-width:560px){.globe,.pyr{opacity:.45}.b-saga::after{background:linear-gradient(0deg,rgba(26,8,48,.95) 0%,rgba(26,8,48,.5) 55%,rgba(26,8,48,.1) 100%)}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">Hlustum og lærum</span>
+    <h1>Heimurinn <span class="p">&amp;</span> <span class="y">þjóðsögurnar</span></h1>
+    <p class="lead">Hlustaðu á þáttinn á KrakkaRÚV, sæktu verkefnið og leystu það. Hvert verkefni fylgir einum þætti af Krakkaheimskviðum, Þjóðsögukistunni eða Í ljósi krakkasögunnar.</p>
+    <div class="tabs" role="group" aria-label="Sía verkefni">
+      <button class="tab" id="tab-heimur" data-filter="heimur" aria-pressed="true">Heimurinn</button>
+      <button class="tab" id="tab-saga" data-filter="saga" aria-pressed="false">Þjóðsögukistan</button>
+      <button class="tab" id="tab-sagan" data-filter="sagan" aria-pressed="false">Sagan</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="world" data-key="heimur" id="heimur">
+      <div class="banner b-world">
+        <svg class="globe" viewBox="0 0 300 300" aria-hidden="true">
+          <circle cx="150" cy="150" r="118" fill="#33d6c4"/>
+          <g class="spin" fill="#ffd21f">
+            <path d="M92 70c22-14 52-12 64 4 8 11-4 22-18 24-12 2-14 16-28 18-18 2-34-12-30-28 2-8 6-13 12-18z"/>
+            <path d="M178 120c20-6 44 4 50 22 4 14-8 30-24 34-10 3-14 18-28 20-16 2-26-14-20-28 4-10-2-20 2-30 3-9 10-15 20-18z"/>
+            <path d="M80 170c14-4 28 6 30 20 2 16-10 34-24 36-12 1-20-12-22-26-2-14 4-27 16-30z"/>
+            <path d="M190 52c10-2 22 2 24 10 2 8-8 12-16 12-10 0-16-6-14-12 1-5 3-9 6-10z"/>
+          </g>
+          <circle cx="150" cy="150" r="118" fill="none" stroke="#ff5fa2" stroke-width="6"/>
+          <ellipse cx="150" cy="150" rx="148" ry="40" fill="none" stroke="#fff8e6" stroke-width="3" stroke-dasharray="6 10" transform="rotate(-18 150 150)"/>
+          <circle cx="282" cy="108" r="9" fill="#ff5fa2"/>
+        </svg>
+        <div class="txt">
+          <span class="kicker">Krakkaheimskviður</span>
+          <h2>Heimurinn</h2>
+          <p>Fréttir af því sem gerist utan Íslands, sagðar á einfaldan og skemmtilegan hátt.</p>
+        </div>
+      </div>
+      <div class="cards" data-list="heimur"></div>
+    </section>
+
+    <section class="world" data-key="saga" id="saga">
+      <div class="banner b-saga">
+        <img src="myndir/troll.jpg" alt="Mosavaxið tröll situr á kletti yfir firði í ljósaskiptunum">
+        <div class="txt">
+          <span class="kicker">Þjóðsögukistan</span>
+          <h2>Tröll, drekar og aðrar þjóðsöguverur</h2>
+          <p>Fyndnar, fróðlegar og stundum svolítið draugalegar þjóðsögur frá öllum heimshornum.</p>
+        </div>
+      </div>
+      <div class="cards" data-list="saga"></div>
+    </section>
+    <section class="world" data-key="sagan" id="sagan">
+      <div class="banner b-hist">
+        <svg class="pyr" viewBox="0 0 320 220" aria-hidden="true">
+          <circle cx="240" cy="70" r="34" fill="#ffd21f"/>
+          <path d="M40 220 L150 70 L260 220 Z" fill="#ff5fa2"/>
+          <path d="M150 70 L260 220 L205 220 Z" fill="#c43c7c"/>
+          <path d="M190 220 L250 140 L310 220 Z" fill="#33d6c4"/>
+          <path d="M250 140 L310 220 L280 220 Z" fill="#22a597"/>
+          <path d="M60 196h180M84 164h132M108 132h84" stroke="#2a0f4f" stroke-width="3" stroke-dasharray="4 8" opacity=".5"/>
+        </svg>
+        <div class="txt">
+          <span class="kicker">Í ljósi krakkasögunnar</span>
+          <h2>Börn sem urðu hluti af sögunni</h2>
+          <p>Sannar sögur af krökkum frá ólíkum tímum, allt frá faraóum Egyptalands til landnámsaldar á Íslandi.</p>
+        </div>
+      </div>
+      <div class="cards" data-list="sagan"></div>
+      <div class="heild">
+        <h3 class="sec">Heildstæð verkefni <span class="tag">Fyrir kennara</span></h3>
+        <article class="feature">
+          <div>
+            <h4>Titanic</h4>
+            <p class="sub">Skipið ósökkvandi · 10 glærur</p>
+            <p>Heildstætt verkefni sem nær yfir nokkrar kennslustundir. Nemendur hlusta á báða þættina um börnin á Titanic, svara spurningum í stílabók, bera saman svör í hópum, teikna skipið með farrýmunum og læra að skrá heimildir.</p>
+            <div class="actions">
+              <a class="btn dl" href="verkefni/titanic-heildstaett-verkefni.pptx" download>__DL__Sækja glærur (PowerPoint)</a>
+            </div>
+            <div class="actions">
+              <a class="btn listen" href="https://www.ruv.is/krakkaruv/spila/i-ljosi-krakkasogunnar/32341/9kdm2i" target="_blank" rel="noopener">__PLAY__Börnin á Titanic I</a>
+              <a class="btn listen" href="https://www.ruv.is/krakkaruv/spila/i-ljosi-krakkasogunnar/32341/9kdm2j" target="_blank" rel="noopener">__PLAY__Börnin á Titanic II</a>
+            </div>
+          </div>
+          <ol class="steps" aria-label="Uppbygging verkefnisins">
+            <li><b>1</b><span>Kynning á Titanic og spurningar við hlustun á fyrri þáttinn</span></li>
+            <li><b>2</b><span>Hópavinna: nemendur fara saman yfir svörin sín</span></li>
+            <li><b>3</b><span>Teikning af skipinu, vélarrými neðst og farrýmin þrjú þar fyrir ofan</span></li>
+            <li><b>4</b><span>Spurningar við hlustun á seinni þáttinn</span></li>
+            <li><b>5</b><span>Heimildavinna: nemendur afla sér upplýsinga og skrifa minnst fimm staðreyndir með heimildum</span></li>
+          </ol>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Þættirnir eru á <a href="https://www.ruv.is/krakkaruv" target="_blank" rel="noopener">KrakkaRÚV</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   VERKEFNALISTI — bættu við nýju verkefni hér.
+   flokkur: "heimur" (Krakkaheimskviður), "saga" (Þjóðsögukistan)
+            eða "sagan" (Í ljósi krakkasögunnar)
+   skra:    slóð á verkefnaskrána, t.d. "verkefni/nafn.docx"
+   thattur: hlekkur á þáttinn á ruv.is
+   ============================================================ */
+const VERKEFNI = [
+  {
+    flokkur: "heimur",
+    titill: "Hvað er NATO og Legó-slysið",
+    lysing: "Hvað er Atlantshafsbandalagið og hvers vegna skiptir það Ísland máli? Í seinni hlutanum er fjallað um Legó-slysið árið 1997.",
+    skra: "verkefni/nato-og-lego.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/krakkaheimskvidur/36827/av6mlm"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsaga um draugaskip",
+    lysing: "Íslensk þjóðsaga um dularfullt skip í fjörunni sem enginn þorði að koma nálægt. Verkefnið nær líka yfir rím og ljóðstafi, málshætti úr sjósókn og fræg draugaskip eins og Hollendinginn fljúgandi.",
+    skra: "verkefni/draugaskip.docx",
+    sida: "thjodsogur/draugaskip/index.html",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/bte3mi"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsaga um dverga og dýrgripi goðanna",
+    lysing: "Loki klippir hárið af Sif og þarf að fá dvergana til að smíða dýrgripi handa goðunum. Sagan er úr Snorra-Eddu.",
+    skra: "verkefni/dvergar-og-dyrgripir-godanna.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvrt"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsaga um týndan hamar og Þór í dulargervi",
+    lysing: "Jötunninn Þrymur stelur Mjölni og Þór þarf að dulbúast til að ná hamrinum aftur. Sagan er úr Eddukvæðum.",
+    skra: "verkefni/tyndur-hamar-thors.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvru"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsögur um nykur og glímu við draug",
+    lysing: "Hvað er nykur, hvar heldur hann sig og hvers vegna er hann hættulegur? Íslenskar þjóðsögur um vatnahest og draug.",
+    skra: "verkefni/nykur-og-draugur.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvs2"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsögur um kofa með hænsnafætur, umskipting og stórhættulegan kött",
+    lysing: "Systkini þurfa að sleppa frá Babajaka sem býr í kofa á hænsnafótum. Einnig saga af umskiptingi og 18 barna föður í álfheimum.",
+    skra: "verkefni/babajaka-og-umskiptingur.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvr9"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsögur um gullkamb, selfólk og banana í Brasilíu",
+    lysing: "Maður skiptir á hlutum til að eignast gullkamb og færeyska sagan um selakonuna í Mikladal.",
+    skra: "verkefni/gullkambur-og-selakonan.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvr6"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsögur um vind sem slapp úr poka, mat sem fauk og sígræn tré",
+    lysing: "Ísbjörn geymir vindinn í poka og strákur leggur af stað til að finna Norðanvindinn.",
+    skra: "verkefni/vindurinn-og-nordanvindurinn.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvrh"
+  },
+  {
+    flokkur: "saga",
+    titill: "Þjóðsaga um sjúskaða táfýluskó",
+    lysing: "Abu Kassim reynir allt til að losna við illa lyktandi skóna sína en þeir koma alltaf aftur til hans.",
+    skra: "verkefni/abu-kassim-tafyluskor.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvro"
+  },
+  {
+    flokkur: "saga",
+    titill: "Vetrarsaga: Snjókanínur",
+    lysing: "Japönsk vetrarsaga um himnabörn og snjóbolta. Í verkefninu spreyta nemendur sig á að teikna japönsku táknin fyrir snjóhéra.",
+    skra: "verkefni/snjokaninur.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/bi7h3a"
+  },
+  {
+    flokkur: "sagan",
+    titill: "Tutankhamun",
+    lysing: "Drengurinn sem varð faraó í Egyptalandi og dýrgripirnir þúsundum saman sem fundust í gröf hans.",
+    skra: "verkefni/tutankhamun.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/i-ljosi-krakkasogunnar/32341/9kdm31"
+  },
+  {
+    flokkur: "sagan",
+    titill: "Egill Skallagrímsson",
+    lysing: "Frægasta barn Íslandssögunnar laumaðist í veislu þriggja ára gamall og þoldi illa að tapa.",
+    skra: "verkefni/egill-skallagrimsson.docx",
+    thattur: "https://www.ruv.is/krakkaruv/spila/i-ljosi-krakkasogunnar/32341/9kdm30"
+  }
+];
+
+const SERIA = {heimur:"Krakkaheimskviður", saga:"Þjóðsögukistan", sagan:"Í ljósi krakkasögunnar"};
+const ICON_DL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
+const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function teikna(){
+  for (const key of ["heimur","saga","sagan"]){
+    const listi = document.querySelector(`[data-list="${key}"]`);
+    const atridi = VERKEFNI.filter(v => v.flokkur === key);
+    listi.innerHTML = atridi.length ? atridi.map(v => `
+      <article class="card">
+        <div class="meta">
+          <span class="chip ser">${SERIA[v.flokkur]}</span>
+          <span class="chip">${v.sida ? "Heildarpakki" : "Word-skjal"}</span>
+        </div>
+        <h3>${esc(v.titill)}</h3>
+        <p>${esc(v.lysing)}</p>
+        <div class="actions">
+          ${v.sida
+            ? `<a class="btn dl" href="${esc(v.sida)}">${ICON_DL}Opna kennsluefni</a>`
+            : `<a class="btn dl" href="${esc(v.skra)}" download>${ICON_DL}Sækja verkefni</a>`}
+          <a class="btn listen" href="${esc(v.thattur)}" target="_blank" rel="noopener">${ICON_PLAY}Hlusta á þáttinn</a>
+        </div>
+      </article>`).join("") : `<p class="empty">Fleiri verkefni bætast við fljótlega.</p>`;
+  }
+}
+
+function sia(filter){
+  document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", t.dataset.filter === filter));
+  document.querySelectorAll(".world").forEach(w => { w.hidden = w.dataset.key !== filter; });
+}
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => sia(t.dataset.filter)));
+
+teikna();
+document.querySelectorAll(".feature .btn").forEach(b => { b.innerHTML = b.innerHTML.replace("__DL__", ICON_DL).replace("__PLAY__", ICON_PLAY); });
+const h = location.hash.slice(1);
+sia(["heimur","saga","sagan"].includes(h) ? h : "heimur");
+</script>
+</body>
+</html>
