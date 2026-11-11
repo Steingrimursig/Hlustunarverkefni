@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Þjóðsaga um dverga og dýrgripi goðanna · orðaskýringar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Orðaskýringar: næturhiminn, ein dálkur af orðaspjöldum. Tveir hamir: Lesa og Æfa mig (merking falin þar til smellt er). */
+:root{
+  --night:#0b1630; --navy:#12224a; --deep:#1a3166; --blue:#4f8de8; --mist:#a9c6f2;
+  --text:#e6eefb; --muted:#9fb2d4; --line:rgba(169,198,242,.16); --sun:#ffd21f;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--night);background-image:radial-gradient(ellipse 90% 40% at 50% -5%,rgba(79,141,232,.28),transparent 70%);
+  color:var(--text);font-family:var(--body);font-size:1.05rem;line-height:1.55;min-height:100%}
+.wrap{max-width:860px;margin:0 auto;padding-block:2.4rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+h1{font:700 clamp(2.4rem,7vw,3.6rem)/1.05 var(--display);margin:.3rem 0 .5rem;text-wrap:balance;text-shadow:0 0 28px rgba(169,198,242,.35)}
+.lead{color:var(--muted);max-width:60ch;margin:0}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:1.4rem 0 1.2rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--navy)}
+.seg button{font:700 .95rem var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:8px 18px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.count{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.ghost{font:700 .9rem var(--body);color:var(--mist);background:none;border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
+.list{display:grid;gap:12px}
+.card{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:6px 24px;padding:1.1rem 1.25rem;
+  background:linear-gradient(180deg,var(--navy),rgba(18,34,74,.85));border:1px solid var(--line);border-radius:14px;text-align:left;width:100%;color:inherit;font:inherit}
+.word{font:700 1.6rem/1.15 var(--display);color:var(--mist)}
+.tag{display:inline-block;margin-top:.4rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);border:1px solid rgba(79,141,232,.45);border-radius:999px;padding:.05rem .55rem}
+.meaning{color:var(--text);font-size:1.08rem}
+.example{font:italic 500 1.2rem/1.4 var(--display);color:var(--muted);margin-top:.25rem}
+.example b{color:var(--mist);font-weight:700}
+.hide{display:none}
+/* Æfingahamur */
+.practice .card{cursor:pointer}
+.practice .card:hover{border-color:rgba(79,141,232,.6)}
+.practice .card:not(.open) .reveal{display:none}
+.practice .card:not(.open) .hide{display:block;color:var(--muted);font-size:.95rem;align-self:center}
+.card.open{border-color:var(--blue)}
+.card:focus-visible,.seg button:focus-visible,.ghost:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+footer{margin-top:1.6rem;color:var(--muted);font-size:.9rem}
+@media (max-width:640px){.card{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Þjóðsögukistan · Orðaforði</div>
+    <h1>Orðaskýringar</h1>
+    <p class="lead">Þjóðsaga um dverga og dýrgripi goðanna. Lestu merkingu hvers orðs og dæmið. Í „Æfa mig“ eru merkingarnar faldar: hugsaðu fyrst hvað orðið merkir og smelltu svo á spjaldið til að sjá hvort þú hafðir rétt fyrir þér.</p>
+  </header>
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Hamur">
+      <button id="ham-lesa" aria-pressed="true">Lesa</button>
+      <button id="ham-aefa" aria-pressed="false">Æfa mig</button>
+    </div>
+    <span class="count" id="talning" hidden></span>
+    <button class="ghost" id="fela" hidden>Fela allt aftur</button>
+  </div>
+  <div class="list" id="listi"></div>
+  <footer>Óháð kennsluefni við þætti KrakkaRÚV.</footer>
+</div>
+
+<script>
+const ORD = [{"ord": "geithafur", "flokkur": "nafnorð", "skyring": "karlkyns geit", "daemi": "**Geithafurinn** stangaði hliðið og jarmaði hátt."}, {"ord": "að aðlagast", "flokkur": "sagnorð", "skyring": "að venjast nýjum aðstæðum og laga sig að þeim", "daemi": "Það tók nýja nemandann nokkrar vikur að **aðlagast** bekknum."}, {"ord": "yfirnáttúrulegt", "flokkur": "lýsingarorð", "skyring": "eitthvað sem ekki er hægt að skýra með lögmálum náttúrunnar, til dæmis galdrar og töfrar", "daemi": "Hamarinn hafði **yfirnáttúrulega** krafta og hitti alltaf í mark."}, {"ord": "að merja", "flokkur": "sagnorð", "skyring": "að kremja eitthvað svo það fletjist út eða skaddist", "daemi": "Steinninn féll á fótinn á honum og **marði** tærnar."}, {"ord": "lymskulegur", "flokkur": "lýsingarorð", "skyring": "slægur og undirförull; sem reynir að ná sínu fram með brögðum", "daemi": "Loki brosti **lymskulega** og lagði á ráðin."}, {"ord": "hér um slóðir", "flokkur": "orðasamband", "skyring": "hérna á þessu svæði; hér í grenndinni", "daemi": "Enginn **hér um slóðir** hafði séð jafn fagran grip."}, {"ord": "að vera djúpt sokkinn", "flokkur": "orðasamband", "skyring": "að vera svo upptekinn af einhverju að maður tekur ekki eftir neinu öðru", "daemi": "Smiðurinn **var** svo **djúpt sokkinn** í verkið að hann heyrði ekki þegar kallað var á hann."}, {"ord": "físibelgur", "flokkur": "nafnorð", "skyring": "verkfæri sem blæs lofti á glóð svo eldurinn verði heitari; notað í smiðjum", "daemi": "Smiðurinn þrýsti á **físibelginn** og glóðin lifnaði við."}, {"ord": "dýrgripur", "flokkur": "nafnorð", "skyring": "afar verðmætur og fágætur hlutur", "daemi": "Kórónan var mesti **dýrgripur** konungsins."}];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const feitt = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const listi = document.getElementById("listi");
+listi.innerHTML = ORD.map((o, i) => `
+  <button class="card" id="ord-${i}" type="button" aria-expanded="true">
+    <span><span class="word">${esc(cap(o.ord))}</span><br><span class="tag">${esc(o.flokkur)}</span></span>
+    <span><span class="reveal"><span class="meaning">${esc(cap(o.skyring))}.</span><span class="example" style="display:block">${feitt(o.daemi)}</span></span>
+    <span class="hide">Hvað merkir orðið? Smelltu til að sjá.</span></span>
+  </button>`).join("");
+const cards = [...listi.querySelectorAll(".card")];
+const talning = document.getElementById("talning"), fela = document.getElementById("fela");
+let aefa = false;
+function uppfaera() {
+  const opin = cards.filter(c => c.classList.contains("open")).length;
+  talning.textContent = `${opin} af ${cards.length} skoðuð`;
+  cards.forEach(c => c.setAttribute("aria-expanded", String(!aefa || c.classList.contains("open"))));
+}
+function setjaHam(a) {
+  aefa = a;
+  listi.classList.toggle("practice", a);
+  document.getElementById("ham-lesa").setAttribute("aria-pressed", String(!a));
+  document.getElementById("ham-aefa").setAttribute("aria-pressed", String(a));
+  cards.forEach(c => c.classList.remove("open"));
+  talning.hidden = fela.hidden = !a;
+  uppfaera();
+}
+cards.forEach(c => c.addEventListener("click", () => { if (aefa) { c.classList.toggle("open"); uppfaera(); } }));
+document.getElementById("ham-lesa").onclick = () => setjaHam(false);
+document.getElementById("ham-aefa").onclick = () => setjaHam(true);
+fela.onclick = () => { cards.forEach(c => c.classList.remove("open")); uppfaera(); };
+</script>
+
+</body>
+</html>

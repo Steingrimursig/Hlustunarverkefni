@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Þjóðsaga um týndan hamar og Þór í dulargervi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap">
+<style>
+/* Kennarasíða: rólegt fagrit. Fjórir fasar kennslustundarinnar í röð, efnið undir hverjum. */
+:root{--bg:#faf8fc;--card:#ffffff;--ink:#1d1726;--soft:#5d5570;--line:#e4dcee;--plum:#4b1d8c;--tint:#f1ebf9;--sun:#ffd21f;--sunink:#2a0f4f;
+  --display:"Alegreya",Georgia,serif;--body:"Alegreya Sans","Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#160a28;--card:#21123a;--ink:#f4eeff;--soft:#bfb1d8;--line:#36254f;--plum:#c3a6ff;--tint:#2b1848;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#160a28;--card:#21123a;--ink:#f4eeff;--soft:#bfb1d8;--line:#36254f;--plum:#c3a6ff;--tint:#2b1848;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.crumb{font:700 .78rem var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+.crumb a{text-decoration:none}
+h1{font:800 clamp(2rem,5.5vw,3rem)/1.05 var(--display);margin:6px 0 10px;text-wrap:balance}
+.intro{max-width:64ch;margin:0;color:var(--soft)}
+.meta{display:flex;flex-wrap:wrap;gap:0;margin:18px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta div{padding:10px 18px 10px 0;margin-right:18px;border-right:1px solid var(--line)}
+.meta div:last-child{border-right:0}
+.meta small{display:block;font:700 .7rem var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.meta b{font-variant-numeric:tabular-nums}
+.warn{margin:16px 0 0;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:.95rem;max-width:72ch}
+.warn b{margin-right:6px}
+.phases{display:grid;gap:14px;margin-top:28px;counter-reset:f}
+.phase{display:grid;grid-template-columns:200px minmax(0,1fr);gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.phase header{display:flex;gap:12px;align-items:flex-start}
+.pn{font:800 1rem var(--display);width:30px;height:30px;border-radius:50%;background:var(--plum);color:var(--card);display:grid;place-items:center;flex:none}
+.phase h2{font:800 1.3rem/1.2 var(--display);margin:0}
+.pm{font-size:.88rem;color:var(--soft)}
+.phase ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.res{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.res > a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;text-decoration:none}
+.res > a:hover{background:var(--tint)}
+.res > a:focus-visible,.alt:focus-visible{outline:3px solid var(--plum);outline-offset:-3px}
+.ic{width:40px;height:40px;border-radius:10px;background:var(--tint);color:var(--plum);display:grid;place-items:center}
+.ic svg{width:22px;height:22px}
+.t b{display:block;font-size:1.08rem}
+.t small{display:block;color:var(--soft);font-size:.92rem;line-height:1.35}
+.tag{font:800 .7rem var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.alt{display:inline-block;font:700 .9rem var(--body);color:var(--plum);background:none;border:0;border-top:1px solid var(--line);width:100%;text-align:left;padding:10px 16px 10px 70px;cursor:pointer;text-decoration:none}
+.alt:hover{background:var(--tint)}
+.copied{display:block;padding:0 16px 10px 70px;font-size:.88rem;font-weight:700;color:var(--plum)}
+.after{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.after h2{font:800 1.25rem var(--display);margin:0 0 10px}
+.after ol{margin:0;padding-left:20px;display:grid;gap:8px}
+.after ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.95rem}
+.after ul span{color:var(--soft)}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:.85rem;color:var(--soft)}
+@media (max-width:720px){.phase,.after{grid-template-columns:1fr}.phase{gap:10px}.alt,.copied{padding-left:16px}.res > a{grid-template-columns:auto minmax(0,1fr)}.tag{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="crumb"><a href="../../index.html#saga">Þjóðsögukistan</a> · Kennsluefni</span>
+  <h1>Þjóðsaga um týndan hamar og Þór í dulargervi</h1>
+  <p class="intro">Þór vaknar og hamarinn Mjölnir er horfinn. Þrymur, konungur þursanna, hefur stolið honum og vill fá Freyju fyrir konu í skiptum fyrir hamarinn. Til að endurheimta Mjölni dulbýr Þór sig sem brúður. Sagan er Þrymskviða, eitt af Eddukvæðunum, og gefur gott tækifæri til að ræða um skinnhandritin og gildi þeirra fyrir Íslendinga.</p>
+  <div class="meta">
+    <div><small>Lengd</small><b>18 mín.</b></div>
+    <div><small>Uppruni</small><b>Norræn goðafræði</b></div>
+    <div><small>Aldursstig</small><b>Miðstig (5.–7. bekkur)</b></div>
+    <div><small>Tími</small><b>2 × 40 mín.</b></div>
+  </div>
+  <p class="warn"><b>Athugið</b> RÚV bendir á að atriði í sögunni gætu vakið óhug hjá yngstu börnunum og mælir með að þau hlusti með fullorðnum.</p>
+  <div class="phases"><section class="phase"><header><span class="pn">1</span><div><h2>Undirbúningur</h2><span class="pm">Lestu fyrst</span></div></header><ul><li class="res"><a href="hamar-thors-kennsluspjald.pdf" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 9h10M7 13h10M7 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="t"><b>Kennsluspjald</b><small>Um þáttinn, hæfniviðmið og tillaga að tveimur kennslustundum</small></span><span class="tag">PDF</span></a></li></ul></section><section class="phase"><header><span class="pn">2</span><div><h2>Fyrir hlustun</h2><span class="pm">Um 10 mín.</span></div></header><ul><li class="res"><a href="hamar-thors-ordaskyringar.pdf" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M4 11h7M4 16h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M17 9l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t"><b>Orðaskýringar</b><small>Til að hengja upp fyrir sóknarskrift eða dreifa til nemenda</small></span><span class="tag">PDF</span></a><a class="alt" href="ordaskyringar.html" target="_blank" rel="noopener">Gagnvirk útgáfa fyrir skjá eða spjaldtölvu</a></li><li class="res"><a href="hamar-thors-ordafordi.pdf" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 2v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13h6M9 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="t"><b>Orðaforðablað</b><small>Sóknarskrift og pörun. Hlustunarbingó á sérstakri síðu til einföldunar.</small></span><span class="tag">PDF</span></a></li></ul></section><section class="phase"><header><span class="pn">3</span><div><h2>Við hlustun</h2><span class="pm">18 mín. hlustun</span></div></header><ul><li class="res"><a href="https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvru" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5v7l6-3.5z" fill="currentColor"/></svg></span><span class="t"><b>Þátturinn á KrakkaRÚV</b><small>Þrymskviða (Norræn goðafræði) · 18 mínútur</small></span><span class="tag">RÚV</span></a></li><li class="res"><a href="hamar-thors-verkefni.pdf" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 2v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13h6M9 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="t"><b>Verkefnablað</b><small>Til útprentunar, A4</small></span><span class="tag">PDF</span></a></li><li class="res"><a href="aefing.html" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="t"><b>Gagnvirk æfing</b><small>Fyrir spjaldtölvu eða tölvu. Nemendur fá endurgjöf strax og ekkert er vistað.</small></span><span class="tag">Vefur</span></a><button class="alt copy" id="afrita" type="button">Afrita slóð fyrir nemendur</button><span class="copied" id="afritad" hidden>Slóðin er afrituð</span></li></ul></section><section class="phase"><header><span class="pn">4</span><div><h2>Eftir hlustun</h2><span class="pm">Úrvinnsla</span></div></header><ul><li class="res"><a href="hamar-thors-lausnir.pdf" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 12h9M18 12v3M21 12v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="t"><b>Lausnablað</b><small>Svör við verkefnablaði og pörun á orðaforðablaði</small></span><span class="tag">PDF</span></a></li></ul></section></div>
+  <div class="after">
+    <div><h2>Umræðuspurningar</h2><ol><li>Hvers vegna ætli Þór hafi verið svona tregur til að klæða sig sem brúður?</li><li>Hvað hefði getað gerst ef Þór hefði ekki fengið Mjölni aftur?</li><li>Hvers vegna skiptir máli að skinnhandritin hafi varðveist?</li><li>Hvað er fyndið í sögunni? Hvers vegna ætli sagan hafi verið sögð svona?</li></ol></div>
+    <div><h2>Hæfniviðmið</h2><ul><li><b>Íslenska</b> <span>· Talað mál, hlustun og áhorf</span></li><li><b>Íslenska</b> <span>· Málfræði og orðaforði</span></li><li><b>Íslenska</b> <span>· Ritun</span></li><li><b>Samfélagsgreinar</b> <span>· Menningarlæsi</span></li></ul></div>
+  </div>
+  <footer>Óháð kennsluefni við þætti KrakkaRÚV. Þættirnir eru framleiddir af RÚV.</footer>
+</div>
+<script>
+(function(){
+  const btn=document.getElementById("afrita"), ok=document.getElementById("afritad");
+  if(!btn) return;
+  const slod=new URL("aefing.html", location.href).href;
+  btn.addEventListener("click", function(){
+    const synt=()=>{ok.hidden=false; setTimeout(()=>ok.hidden=true,2500);};
+    const varaleid=()=>{ok.textContent=slod; ok.hidden=false;};
+    try{ navigator.clipboard.writeText(slod).then(synt, varaleid); }catch(_){ varaleid(); }
+  });
+})();
+</script>
+</body>
+</html>
