@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Þjóðsögur um kofa með hænsnafætur, umskipting og stórhættulegan kött · æfing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap">
+<style>
+/* Nemendaæfing: eitt skref í einu, stórir snertifletir fyrir spjaldtölvur. */
+:root{
+  --bg:#f6f2fb; --card:#ffffff; --ink:#1d1726; --soft:#5d5570; --line:#ddd4ea;
+  --plum:#4b1d8c; --sun:#ffd21f; --sunink:#2a0f4f;
+  --ok:#1f7a4d; --okbg:#e3f4ea; --no:#b3261e; --nobg:#fdecea; --mid:#8a5a00; --midbg:#fff4d6;
+  --display:"Alegreya",Georgia,serif; --body:"Alegreya Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#190b2e; --card:#25133f; --ink:#f6f0ff; --soft:#c3b5dc; --line:#3d2a5c;
+  --plum:#b896ff; --sun:#ffd21f; --sunink:#2a0f4f;
+  --ok:#6fd49c; --okbg:#173a2a; --no:#ff8a80; --nobg:#3f1a1d; --mid:#ffc857; --midbg:#3a2c10; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#190b2e; --card:#25133f; --ink:#f6f0ff; --soft:#c3b5dc; --line:#3d2a5c;
+  --plum:#b896ff; --sun:#ffd21f; --sunink:#2a0f4f;
+  --ok:#6fd49c; --okbg:#173a2a; --no:#ff8a80; --nobg:#3f1a1d; --mid:#ffc857; --midbg:#3a2c10; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 60px}
+header{display:grid;gap:4px;margin-bottom:16px}
+.rod{font:800 .75rem var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+h1{font:800 clamp(1.9rem,6vw,2.6rem)/1.05 var(--display);margin:0;text-wrap:balance}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+.steps button{font:700 .9rem var(--body);border:2px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;padding:6px 14px;cursor:pointer}
+.steps button[aria-current="step"]{border-color:var(--plum);color:var(--ink)}
+.steps button.done{background:var(--plum);border-color:var(--plum);color:var(--card)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:16px}
+h2{font:800 1.6rem/1.15 var(--display);margin:0}
+.lead{margin:0;color:var(--soft)}
+.q{display:grid;gap:10px}
+.q .s{font-weight:700;font-size:1.1rem}
+.opts{display:grid;gap:10px}
+.opt{font:500 1.05rem var(--body);text-align:left;padding:14px 16px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;min-height:52px}
+.opt:hover{border-color:var(--plum)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.no{border-color:var(--no);background:var(--nobg)}
+.opt:disabled{cursor:default}
+.fb{font-weight:700;padding:10px 14px;border-radius:10px}
+.fb.ok{background:var(--okbg);color:var(--ok)}
+.fb.no{background:var(--nobg);color:var(--no)}
+.fb.mid{background:var(--midbg);color:var(--mid)}
+.counter{font:700 .9rem var(--body);color:var(--soft);font-variant-numeric:tabular-nums}
+textarea{font:500 1.05rem var(--body);width:100%;min-height:90px;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+textarea:focus,.btn:focus-visible,.opt:focus-visible,.steps button:focus-visible,.word:focus-visible,input:focus-visible{outline:3px solid var(--plum);outline-offset:2px}
+.model{border-left:4px solid var(--plum);padding:8px 12px;background:var(--bg);border-radius:0 10px 10px 0}
+.model b{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:800 1rem var(--body);padding:12px 20px;border-radius:12px;border:2px solid transparent;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.main{background:var(--sun);color:var(--sunink)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn.self-ok{background:var(--okbg);color:var(--ok);border-color:var(--ok)}
+.btn.self-mid{background:var(--midbg);color:var(--mid);border-color:var(--mid)}
+.btn.self-no{background:var(--nobg);color:var(--no);border-color:var(--no)}
+.btn[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ink) inset}
+.poem{font:700 1.35rem/2.1 var(--display);padding:12px 16px;border-radius:14px;background:var(--bg)}
+.word{font:inherit;background:none;border:0;color:inherit;padding:0 3px;border-radius:6px;cursor:pointer;border-bottom:3px solid transparent}
+.word.sel{background:var(--sun);color:var(--sunink)}
+.word.hit{background:var(--okbg);color:var(--ok);border-bottom-color:var(--ok)}
+.word.miss{background:var(--nobg);color:var(--no)}
+.word.want{border-bottom-color:var(--ok)}
+.hr{height:1px;background:var(--line)}
+.part{font:800 1.3rem var(--display);color:var(--plum);margin:14px 0 0}
+.res{display:grid;gap:10px}
+.res .r{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--bg);font-weight:700}
+.res .r span:last-child{font-variant-numeric:tabular-nums;font-size:1.2rem}
+.total{font:800 3rem/1 var(--display);font-variant-numeric:tabular-nums}
+input#nafn{font:700 1.1rem var(--body);padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:100%;max-width:360px}
+.stamp{color:var(--soft);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.word{transition:background .15s,border-color .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="rod">Þjóðsögukistan · Æfing</span>
+    <h1>Þjóðsögur um kofa með hænsnafætur, umskipting og stórhættulegan kött</h1>
+  </header>
+  <nav class="steps" id="steps" aria-label="Hlutar æfingarinnar"></nav>
+  <main id="svid" class="card" aria-live="polite"></main>
+</div>
+
+<script>
+const G = {"slug": "babajaka", "titill": "Þjóðsögur um kofa með hænsnafætur, umskipting og stórhættulegan kött", "saga": "Babajaka og 18 barna faðir í álfheimum", "uppruni": "Rússland og Ísland", "rod": "Þjóðsögukistan", "thattur": "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvr9", "lengd_min": 21, "birt": "29. desember 2021", "aldursstig": "Miðstig (5.–7. bekkur)", "timi": "2 × 40 mín.", "kynning": "Í þættinum eru þrjár sögur. Systkini þurfa að sleppa frá norninni Babajaka sem býr í kofa á hænsnafótum. Í íslensku sögunni um 18 barna föður í álfheimum grunar móður að barnið hennar sé umskiptingur. Síðast segir frá stórhættulegum ketti. Spurningarnar ná yfir fyrstu tvær sögurnar.", "haefnividmid": [{"grein": "Íslenska", "svid": "Talað mál, hlustun og áhorf", "texti": "Hlustar af athygli á frásögn og getur svarað spurningum um efni hennar."}, {"grein": "Íslenska", "svid": "Málfræði og orðaforði", "texti": "Eykur orðaforða sinn og getur notað ný orð og orðasambönd í réttu samhengi."}, {"grein": "Samfélagsgreinar", "svid": "Menningarlæsi", "texti": "Þekkir þjóðsögur sem hluta af menningararfi og ber saman sögur frá ólíkum löndum."}], "ordaforði": [{"ord": "kotbóndi", "flokkur": "nafnorð", "skyring": "fátækur bóndi sem býr á litlum bæ", "daemi": "**Kotbóndinn** átti aðeins eina kú og fáeinar kindur."}, {"ord": "andstyggilegt", "flokkur": "lýsingarorð", "skyring": "mjög ógeðslegt eða illgjarnt", "daemi": "Nornin hló **andstyggilega** og nuddaði saman höndunum."}, {"ord": "að óhlýðnast", "flokkur": "sagnorð", "skyring": "að gera ekki það sem manni er sagt að gera", "daemi": "Krakkarnir **óhlýðnuðust** og fóru inn í skóginn."}, {"ord": "að taka af skarið", "flokkur": "orðasamband", "skyring": "að ákveða sig og hefjast handa þegar aðrir hika", "daemi": "Loks **tók** stelpan **af skarið** og bankaði á dyrnar."}, {"ord": "að segja einhverjum allt af létta", "flokkur": "orðasamband", "skyring": "að segja einhverjum alla söguna, án þess að leyna neinu", "daemi": "Drengurinn **sagði** ömmu sinni **allt af létta**."}, {"ord": "að veigra sér við einhverju", "flokkur": "orðasamband", "skyring": "að hika við eða forðast að gera eitthvað", "daemi": "Hún **veigraði sér við** að ganga ein yfir dimman skóginn."}, {"ord": "að rjúka á dyr", "flokkur": "orðasamband", "skyring": "að fara skyndilega og í reiði út úr húsi", "daemi": "Bóndinn **rauk á dyr** og skellti hurðinni á eftir sér."}, {"ord": "hjarir", "flokkur": "nafnorð", "skyring": "málmstykki sem hurð eða hlið snýst á", "daemi": "Hliðið ískraði á ryðguðum **hjörunum**."}, {"ord": "vælinn", "flokkur": "lýsingarorð", "skyring": "sem vælir og kvartar mikið", "daemi": "Barnið var **vælið** og vildi ekki sofna."}, {"ord": "grýta", "flokkur": "nafnorð", "skyring": "pottur; gamalt orð", "daemi": "Mamman hrærði í litlu **grýtunni** yfir eldinum."}], "hlustun": [{"spurning": "Hvaðan er þjóðsagan um Babajaka?", "svar": "Frá Rússlandi.", "linur": 1, "hluti": "Babajaka"}, {"spurning": "Úr hverju er girðingin hennar Babajaka?", "svar": "Úr beinum.", "linur": 1, "hluti": "Babajaka"}, {"spurning": "Hver var það sem rak krakkana að kofa Babajaka?", "svar": "Stjúpmóðir þeirra.", "linur": 1, "hluti": "Babajaka"}, {"spurning": "Hvað fengu þau að borða frá ömmu sinni?", "svar": "Ferska mjólk að drekka og skinkusneið.", "linur": 1, "hluti": "Babajaka"}, {"spurning": "Hvaða ráð fékk stelpan frá músinni?", "svar": "Að fara út, finna svartan kött og gefa honum skinku.", "linur": 2, "hluti": "Babajaka"}, {"spurning": "Hvaða ráð fengu krakkarnir frá fuglunum?", "svar": "Að finna leir og vatn og þjappa því ofan í sigtið.", "linur": 2, "hluti": "Babajaka"}, {"spurning": "Hvað gerði stelpan við birkitrén?", "svar": "Hún batt þau með hárborðanum sínum.", "linur": 1, "hluti": "Babajaka"}, {"spurning": "Hvernig sluppu krakkarnir frá Babajaka?", "svar": "Þau hlupu í burtu og nýttu hlutina sem þau fengu frá kettinum og ömmu sinni.", "linur": 2, "hluti": "Babajaka"}, {"spurning": "Hvernig fór barnið að haga sér í sögunni?", "svar": "Það lét mjög illa, eins og umskiptingur.", "linur": 1, "hluti": "18 barna faðir í álfheimum"}, {"spurning": "Hvað gerði mamman til að komast að því hvort barnið væri umskiptingur?", "svar": "Hún lengdi sleif og stakk henni ofan í lítinn pott. Umskiptingnum fannst þetta svo furðuleg sjón að hann fór að tala.", "linur": 3, "hluti": "18 barna faðir í álfheimum"}], "aukaverkefni": [{"titill": "Saga með nýjum orðum", "inst": "Veldu þrjú orð af orðalistanum og skrifaðu stutta sögu þar sem þau koma öll fyrir.", "linur": 8}], "kennslutillaga": [{"heiti": "Tími 1 · Hlustun", "skref": [{"min": 10, "texti": "Fyrir hlustun: Sóknarskrift. Kennari hengir orðaskýringarnar upp eða hefur þær hjá sér. Nemendur sækja skýringu, leggja hana á minnið, fara í sætið sitt og skrifa hana niður. Að því loknu para nemendur saman orð og skýringar."}, {"min": 2, "texti": "Kennari spyr hvort nemendur þekki sögur af nornum eða álfum."}, {"min": 23, "texti": "Hlustun: Nemendur hlusta á þáttinn og svara spurningunum á verkefnablaðinu eða í gagnvirku æfingunni um leið. Mikilvægast er að nemendur einbeiti sér að sögunni. Kennari getur gert stutt hlé ef þörf krefur, en of mörg hlé brjóta upp sögustundina."}, {"min": 5, "texti": "Nemendur ljúka við að svara spurningunum."}]}, {"heiti": "Tími 2 · Úrvinnsla", "skref": [{"min": 10, "texti": "Umræða: Farið yfir svörin saman og rætt um umræðuspurningarnar."}, {"min": 30, "texti": "Ritun: Nemendur velja þrjú orð af orðalistanum og skrifa stutta sögu þar sem þau koma öll fyrir."}]}], "umraeda": ["Babajaka og Grýla eru báðar óhugnanlegar konur í þjóðsögum. Hvað eiga þær sameiginlegt?", "Hvers vegna ætli fólk fyrr á tímum hafi trúað á umskiptinga?", "Hvað hjálpaði krökkunum að sleppa frá Babajaka? Hvað segir það okkur um að hlusta á góð ráð?", "Hvernig er rússneska sagan ólík þeirri íslensku?"], "adlogun": {"studningur": "Nemendur fá orðaskýringarnar útprentaðar eða opna gagnvirku orðaskýringarnar. Til einföldunar geta nemendur spilað hlustunarbingó á orðaforðablaðinu í stað þess að svara spurningunum. Gagnvirka æfingin hentar líka vel, þar sem nemandinn fær strax endurgjöf og getur reynt aftur.", "aukaaskorun": "Nemendur bera saman Babajaka og íslenskar tröllskessur eða Grýlu og skrifa um það sem er líkt og ólíkt."}, "tengdir": [{"titill": "Þjóðsögur um gullkamb, selfólk og banana í Brasilíu", "slod": "https://www.ruv.is/krakkaruv/spila/thjodsogukistan/32342/9kdvr6"}], "verkefni_ord": ["kotbóndi", "andstyggilegt", "að óhlýðnast", "að taka af skarið", "að segja einhverjum allt af létta", "að veigra sér við einhverju", "að rjúka á dyr", "hjarir", "vælinn", "grýta"], "bingo": ["kotbóndi", "andstyggilegt", "að óhlýðnast", "að taka af skarið", "að segja einhverjum allt af létta", "að veigra sér við einhverju", "að rjúka á dyr", "hjarir", "vælinn"]};
+
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+
+// Föst „slembi“-röð svo allir nemendur fái sömu röð og kennari geti farið yfir saman
+function seeded(arr, seed) {
+  const a = arr.slice(); let x = seed;
+  for (let i = a.length - 1; i > 0; i--) { x = (x * 9301 + 49297) % 233280; const j = Math.floor(x / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+// ---------- Spurningar byggðar úr gögnunum ----------
+const ordWords = G["ordaforði"].map(o => o.ord);
+const ordQs = ordWords.map((w, i) => {
+  const rett = G["ordaforði"].find(o => o.ord === w).skyring;
+  const adrar = seeded(G["ordaforði"].filter(o => o.ord !== w), i + 7).slice(0, 2).map(o => o.skyring);
+  const valkostir = seeded([rett, ...adrar], i + 3);
+  return { s: `Hvað merkir „${w}“?`, valkostir: valkostir.map(cap), rett: valkostir.indexOf(rett) };
+});
+const skipQs = G.draugaskip ? [...G.draugaskip.flatMap(d => d.spurningar), ...G.hollendingurinn.spurningar] : [];
+const lj = G.ljod || null;
+const rimSet = new Set(lj ? lj.rim.flat() : []);
+const stafSet = new Set(lj ? [...lj.studlar.flat(), ...lj.hofudstafir] : []);
+
+const S = {
+  hluti: 0,
+  ord: { i: 0, stig: 0, svarad: [] },
+  hlustun: G.hlustun.map(() => ({ texti: "", synt: false, mat: null })),
+  ljod: { rim: new Set(), staf: new Set(), rimOk: null, stafOk: null },
+  skip: { i: 0, stig: 0, svarad: [] }
+};
+
+const HLUTAR = [
+  { heiti: "Orðaforði", teikna: teiknaOrd, lokid: () => S.ord.svarad.length === ordQs.length },
+  { heiti: "Hlustun", teikna: teiknaHlustun, lokid: () => S.hlustun.every(h => h.synt) },
+  ...(lj ? [{ heiti: "Ljóðið", teikna: teiknaLjod, lokid: () => S.ljod.rimOk !== null && S.ljod.stafOk !== null }] : []),
+  ...(skipQs.length ? [{ heiti: "Draugaskip", teikna: teiknaSkip, lokid: () => S.skip.svarad.length === skipQs.length }] : []),
+  { heiti: "Niðurstöður", teikna: teiknaNidurstodur, lokid: () => false }
+];
+
+function lokid(i) { return HLUTAR[i].lokid(); }
+
+function teiknaSkref() {
+  $("#steps").innerHTML = HLUTAR.map((h, i) =>
+    `<button id="skref-${i}" class="${lokid(i) ? "done" : ""}" ${i === S.hluti ? 'aria-current="step"' : ""} data-i="${i}">${i + 1}. ${h.heiti}</button>`).join("");
+  $("#steps").querySelectorAll("button").forEach(b => b.onclick = () => fara(+b.dataset.i));
+}
+function fara(i) { S.hluti = i; teikna(); window.scrollTo({ top: 0 }); }
+function teikna() { teiknaSkref(); HLUTAR[S.hluti].teikna($("#svid")); }
+const afram = (lbl = "Áfram") => `<div class="row"><button class="btn main" id="afram">${lbl} →</button></div>`;
+function tengjaAfram() { const b = $("#afram"); if (b) b.onclick = () => fara(Math.min(S.hluti + 1, HLUTAR.length - 1)); }
+
+// ---------- Fjölvalsspurningar (notað í orðaforða og draugaskipum) ----------
+function fjolval(el, st, qs, titill, inngangur) {
+  if (st.i >= qs.length) {
+    el.innerHTML = `<h2>${titill}</h2><div class="fb ok">Þú svaraðir ${st.stig} af ${qs.length} rétt í fyrstu tilraun.</div>
+      <div class="row"><button class="btn ghost" id="aftur">Reyna aftur</button></div>${afram()}`;
+    $("#aftur").onclick = () => { st.i = 0; st.stig = 0; st.svarad = []; teikna(); };
+    tengjaAfram(); return;
+  }
+  const q = qs[st.i]; let tilraun = 0;
+  el.innerHTML = `<h2>${titill}</h2>${inngangur ? `<p class="lead">${inngangur}</p>` : ""}
+    <div class="counter">Spurning ${st.i + 1} af ${qs.length}</div>
+    <div class="q"><div class="s">${esc(q.s)}</div>
+    <div class="opts">${q.valkostir.map((v, j) => `<button class="opt" id="opt-${j}" data-j="${j}">${esc(v)}</button>`).join("")}</div></div>
+    <div id="fb"></div>`;
+  el.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    const j = +b.dataset.j; tilraun++;
+    if (j === q.rett) {
+      b.classList.add("ok");
+      el.querySelectorAll(".opt").forEach(x => x.disabled = true);
+      if (tilraun === 1) st.stig++;
+      st.svarad.push(tilraun === 1);
+      $("#fb").innerHTML = `<div class="fb ok">${tilraun === 1 ? "Rétt!" : "Rétt, vel gert að reyna aftur."}</div>
+        <div class="row" style="margin-top:12px"><button class="btn main" id="naesta">${st.i + 1 < qs.length ? "Næsta spurning" : "Klára"} →</button></div>`;
+      $("#naesta").onclick = () => { st.i++; teikna(); };
+      $("#naesta").focus();
+      teiknaSkref();
+    } else {
+      b.classList.add("no"); b.disabled = true;
+      $("#fb").innerHTML = `<div class="fb no">Ekki alveg. Reyndu aftur.</div>`;
+    }
+  });
+}
+function teiknaOrd(el) { fjolval(el, S.ord, ordQs, "Orðaforði", "Í sögunni koma fyrir gömul og sjaldgæf orð. Veldu rétta merkingu."); }
+function teiknaSkip(el) { fjolval(el, S.skip, skipQs, "Fræg draugaskip", "Notaðu það sem þú hefur lesið um Jamestown, Lyubov Orlova og Hollendinginn fljúgandi."); }
+
+// ---------- Hlustun: opin svör og sjálfsmat ----------
+function teiknaHlustun(el) {
+  el.innerHTML = `<h2>Við hlustun</h2>
+    <p class="lead">Hlustaðu á þáttinn og skrifaðu svörin þín. Ýttu svo á „Sjá svar“ og mettu sjálf eða sjálfur hvernig gekk.</p>
+    <div class="row"><a class="btn ghost" href="${esc(G.thattur)}" target="_blank" rel="noopener">▶ Hlusta á þáttinn (${G.lengd_min} mín.)</a></div>
+    ${G.hlustun.map((q, i) => `${q.hluti && (i === 0 || G.hlustun[i - 1].hluti !== q.hluti) ? `<h3 class="part">${esc(q.hluti)}</h3>` : ""}<div class="hr"></div><div class="q" id="hq-${i}">
+      <label class="s" for="svar-${i}">${i + 1}. ${esc(q.spurning)}</label>
+      <textarea id="svar-${i}" placeholder="Skrifaðu svarið þitt hér…">${esc(S.hlustun[i].texti)}</textarea>
+      <div id="hm-${i}"></div></div>`).join("")}
+    ${afram()}`;
+  G.hlustun.forEach((q, i) => {
+    const t = $(`#svar-${i}`); t.oninput = () => S.hlustun[i].texti = t.value;
+    teiknaMat(i);
+  });
+  tengjaAfram();
+}
+function teiknaMat(i) {
+  const q = G.hlustun[i], st = S.hlustun[i], box = $(`#hm-${i}`);
+  if (!st.synt) {
+    box.innerHTML = `<button class="btn ghost" id="sja-${i}">Sjá svar</button>`;
+    $(`#sja-${i}`).onclick = () => {
+      if (!st.texti.trim()) { box.insertAdjacentHTML("beforeend", `<div class="fb mid" style="margin-top:8px">Skrifaðu fyrst þitt eigið svar.</div>`); return; }
+      st.synt = true; teiknaMat(i); teiknaSkref();
+    };
+    return;
+  }
+  if (q.svar == null) {
+    box.innerHTML = `<div class="model"><b>Svar</b>Kennarinn þinn fer yfir þetta svar með þér.</div>`;
+    return;
+  }
+  const m = [["ok", "Ég var með þetta", "self-ok"], ["mid", "Næstum því", "self-mid"], ["no", "Ég var ekki með þetta", "self-no"]];
+  box.innerHTML = `<div class="model"><b>Svar</b>${esc(q.svar)}</div>
+    <div class="row" style="margin-top:10px" role="group" aria-label="Sjálfsmat">${m.map(([k, l, c]) =>
+      `<button class="btn ${c}" id="mat-${i}-${k}" data-k="${k}" aria-pressed="${st.mat === k}">${l}</button>`).join("")}</div>`;
+  box.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { st.mat = b.dataset.k; teiknaMat(i); });
+}
+
+// ---------- Ljóðið: smella á orð ----------
+function teiknaLjod(el) {
+  const L = S.ljod;
+  const ord = (w, i, j, sett, ok, rett) => {
+    const hrein = w.replace(/[.,]/g, "");
+    let c = sett.has(hrein) ? "sel" : "";
+    if (ok !== null) c = rett.has(hrein) ? (sett.has(hrein) ? "hit" : "want") : (sett.has(hrein) ? "miss" : "");
+    return `<button class="word ${c}" data-w="${esc(hrein)}" ${ok !== null ? "disabled" : ""}>${esc(w)}</button>`;
+  };
+  const vers = (sett, ok, rett, k) => lj.linur.map((l, i) => l.split(" ").map((w, j) => ord(w, i, j, sett, ok, rett)).join(" ")).join("<br>");
+  const fb = (ok, rett, hvad) => ok === null ? "" : ok
+    ? `<div class="fb ok">Rétt! Þú fannst öll ${hvad}.</div>`
+    : `<div class="fb no">Ekki alveg. Réttu orðin eru: ${[...rett].join(", ")}. Þau eru merkt með grænu.</div>`;
+  el.innerHTML = `<h2>Rím og ljóðstafir</h2>
+    <p class="lead">Vísan kemur fyrir í sögunni. Smelltu á orð til að velja þau.</p>
+    <div class="q"><div class="s">1. Smelltu á öll orðin sem ríma.</div>
+      <div class="poem" id="p-rim">${vers(L.rim, L.rimOk, rimSet)}</div>${fb(L.rimOk, rimSet, "rímorðin")}
+      ${L.rimOk === null ? `<div class="row"><button class="btn main" id="chk-rim">Athuga</button></div>` : ""}</div>
+    <div class="hr"></div>
+    <div class="q"><div class="s">2. Smelltu á ljóðstafina, það er stuðlana og höfuðstafina.</div>
+      <p class="lead" style="font-size:.95rem">Ljóðstafir eru orð sem byrja á sama hljóði. Í fyrri línu hvers línupars eru tveir stuðlar og höfuðstafurinn er fremst í seinni línunni.</p>
+      <div class="poem" id="p-staf">${vers(L.staf, L.stafOk, stafSet)}</div>${fb(L.stafOk, stafSet, "ljóðstafina")}
+      ${L.stafOk === null ? `<div class="row"><button class="btn main" id="chk-staf">Athuga</button></div>` : ""}</div>
+    ${L.rimOk !== null || L.stafOk !== null ? `<div class="row"><button class="btn ghost" id="ljod-aftur">Reyna aftur</button></div>` : ""}
+    ${afram()}`;
+  const bind = (id, sett, okKey, rett) => {
+    $(id).querySelectorAll(".word").forEach(b => b.onclick = () => { const w = b.dataset.w; sett.has(w) ? sett.delete(w) : sett.add(w); teiknaLjod(el); });
+  };
+  if (L.rimOk === null) bind("#p-rim", L.rim);
+  if (L.stafOk === null) bind("#p-staf", L.staf);
+  const same = (a, b) => a.size === b.size && [...a].every(x => b.has(x));
+  if ($("#chk-rim")) $("#chk-rim").onclick = () => { L.rimOk = same(L.rim, rimSet); teikna(); };
+  if ($("#chk-staf")) $("#chk-staf").onclick = () => { L.stafOk = same(L.staf, stafSet); teikna(); };
+  if ($("#ljod-aftur")) $("#ljod-aftur").onclick = () => { S.ljod = { rim: new Set(), staf: new Set(), rimOk: null, stafOk: null }; teikna(); };
+  tengjaAfram();
+}
+
+// ---------- Niðurstöður ----------
+function teiknaNidurstodur(el) {
+  const metin = S.hlustun.filter((h, i) => G.hlustun[i].svar != null);
+  const hlStig = S.hlustun.reduce((a, h) => a + (h.mat === "ok" ? 1 : h.mat === "mid" ? .5 : 0), 0);
+  const ljStig = (S.ljod.rimOk ? 1 : 0) + (S.ljod.stafOk ? 1 : 0);
+  const svarad = S.hlustun.filter(h => h.synt).length;
+  const raðir = [
+    ["Orðaforði", `${S.ord.stig} / ${ordQs.length}`],
+    ["Hlustun (svarað)", `${svarad} / ${G.hlustun.length}`],
+    ...(metin.length ? [["Hlustun (eigið mat)", `${String(hlStig).replace(".", ",")} / ${metin.length}`]] : []),
+    ...(lj ? [["Ljóðið", `${ljStig} / 2`]] : []),
+    ...(skipQs.length ? [["Draugaskip", `${S.skip.stig} / ${skipQs.length}`]] : [])
+  ];
+  const d = new Date();
+  el.innerHTML = `<h2>Niðurstöður</h2>
+    <p class="lead">Skrifaðu nafnið þitt og sýndu kennaranum þínum skjáinn eða taktu skjámynd. Ekkert er vistað.</p>
+    <input id="nafn" placeholder="Nafnið þitt" autocomplete="off">
+    <div class="res">${raðir.map(([a, b]) => `<div class="r"><span>${a}</span><span>${b}</span></div>`).join("")}</div>
+    <p class="stamp">${esc(G.titill)} · ${d.toLocaleDateString("is-IS")} kl. ${d.toLocaleTimeString("is-IS", { hour: "2-digit", minute: "2-digit" })}</p>
+    <div class="row"><button class="btn ghost" id="byrja">Byrja upp á nýtt</button></div>`;
+  $("#byrja").onclick = () => {
+    S.ord = { i: 0, stig: 0, svarad: [] }; S.skip = { i: 0, stig: 0, svarad: [] };
+    S.hlustun = G.hlustun.map(() => ({ texti: "", synt: false, mat: null }));
+    S.ljod = { rim: new Set(), staf: new Set(), rimOk: null, stafOk: null }; fara(0);
+  };
+}
+
+teikna();
+</script>
+
+</body>
+</html>

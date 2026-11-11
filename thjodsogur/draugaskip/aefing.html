@@ -68,6 +68,7 @@ textarea:focus,.btn:focus-visible,.opt:focus-visible,.steps button:focus-visible
 .word.miss{background:var(--nobg);color:var(--no)}
 .word.want{border-bottom-color:var(--ok)}
 .hr{height:1px;background:var(--line)}
+.part{font:800 1.3rem var(--display);color:var(--plum);margin:14px 0 0}
 .res{display:grid;gap:10px}
 .res .r{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--bg);font-weight:700}
 .res .r span:last-child{font-variant-numeric:tabular-nums;font-size:1.2rem}
@@ -183,7 +184,7 @@ function teiknaHlustun(el) {
   el.innerHTML = `<h2>Við hlustun</h2>
     <p class="lead">Hlustaðu á þáttinn og skrifaðu svörin þín. Ýttu svo á „Sjá svar“ og mettu sjálf eða sjálfur hvernig gekk.</p>
     <div class="row"><a class="btn ghost" href="${esc(G.thattur)}" target="_blank" rel="noopener">▶ Hlusta á þáttinn (${G.lengd_min} mín.)</a></div>
-    ${G.hlustun.map((q, i) => `<div class="hr"></div><div class="q" id="hq-${i}">
+    ${G.hlustun.map((q, i) => `${q.hluti && (i === 0 || G.hlustun[i - 1].hluti !== q.hluti) ? `<h3 class="part">${esc(q.hluti)}</h3>` : ""}<div class="hr"></div><div class="q" id="hq-${i}">
       <label class="s" for="svar-${i}">${i + 1}. ${esc(q.spurning)}</label>
       <textarea id="svar-${i}" placeholder="Skrifaðu svarið þitt hér…">${esc(S.hlustun[i].texti)}</textarea>
       <div id="hm-${i}"></div></div>`).join("")}
