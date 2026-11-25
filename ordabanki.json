@@ -41,6 +41,12 @@
    "titill": "Anna Frank",
    "rod": "Í ljósi krakkasögunnar",
    "sida": "sagan/anna-frank/index.html"
+  },
+  {
+   "slug": "tutankhamun",
+   "titill": "Tutankhamun",
+   "rod": "Í ljósi krakkasögunnar",
+   "sida": "sagan/tutankhamun/index.html"
   }
  ],
  "ord": [
@@ -533,6 +539,76 @@
    "skyring": "að gretta sig; skekkja andlitið",
    "daemi": "Strákurinn **geiflaði sig** þegar hann smakkaði súra drykkinn.",
    "thattur": "nykur"
+  },
+  {
+   "ord": "grafhýsi",
+   "flokkur": "nafnorð",
+   "skyring": "bygging eða hvelfing þar sem látið fólk er grafið",
+   "daemi": "Fornleifafræðingarnir fundu inngang að **grafhýsi** undir sandinum.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "faraó",
+   "flokkur": "nafnorð",
+   "skyring": "konungur í Egyptalandi til forna",
+   "daemi": "**Faraóinn** lét reisa risastóran pýramída.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "ævaforn",
+   "flokkur": "lýsingarorð",
+   "skyring": "mjög gamall; frá löngu liðnum tíma",
+   "daemi": "Á veggjunum voru **ævafornar** myndir af guðum og dýrum.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "híeróglýfur",
+   "flokkur": "nafnorð",
+   "skyring": "myndletur Forn-Egypta; tákn og myndir sem notaðar voru sem skrift",
+   "daemi": "Á kistunni voru **híeróglýfur** sem sögðu frá ævi konungsins.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "innsigli",
+   "flokkur": "nafnorð",
+   "skyring": "merki sem sett er á dyr, bréf eða kassa til að sýna að það hafi ekki verið opnað",
+   "daemi": "**Innsiglið** á dyrunum var enn óbrotið.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "meitill",
+   "flokkur": "nafnorð",
+   "skyring": "verkfæri með beittri egg sem slegið er á með hamri til að höggva í stein eða tré",
+   "daemi": "Steinsmiðurinn hjó stafina í steininn með **meitli**.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "líkkista",
+   "flokkur": "nafnorð",
+   "skyring": "kassi sem látið fólk er lagt í",
+   "daemi": "**Líkkistan** var úr skíru gulli.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "granít",
+   "flokkur": "nafnorð",
+   "skyring": "mjög hart og sterkt berg",
+   "daemi": "Styttan var höggvin úr rauðu **graníti**.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "völd",
+   "flokkur": "nafnorð",
+   "skyring": "rétturinn og mátturinn til að ráða yfir öðrum",
+   "daemi": "Faraóinn hafði mikil **völd** yfir öllu landinu.",
+   "thattur": "tutankhamun"
+  },
+  {
+   "ord": "að varðveita",
+   "flokkur": "sagnorð",
+   "skyring": "að geyma eitthvað þannig að það skemmist ekki",
+   "daemi": "Þurrt loftið í eyðimörkinni **varðveitti** gripina í þúsundir ára.",
+   "thattur": "tutankhamun"
   }
  ]
 }
