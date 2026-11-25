@@ -48,6 +48,10 @@ select{font:500 .95rem var(--body);padding:8px;border-radius:8px;border:1px soli
 .btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
 .note{font-size:.85rem;color:var(--soft);margin:0}
 .ver{font-variant-numeric:tabular-nums;font-weight:800}
+.src{display:grid;gap:6px}
+.src label{display:flex;gap:8px;align-items:center;font-size:.95rem;cursor:pointer}
+.src input{accent-color:var(--plum);width:17px;height:17px;margin:0}
+textarea#eigin{width:100%;font:500 .95rem/1.4 var(--body);padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
 button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--plum);outline-offset:2px}
 
 /* Blöðin */
@@ -106,7 +110,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   @page{size:A4;margin:14mm 15mm}
   body{background:#fff}
   .wrap{padding:0;max-width:none}
-  .crumb,h1,.intro,.ctrl{display:none!important}
+  .crumb,h1,.intro,.ctrl,.warnmsg{display:none!important}
   .layout{display:block}
   .sheets{display:block}
   .sheet{box-shadow:none;border-radius:0;width:auto;min-height:0;padding:0;margin:0;page-break-after:always;break-after:page}
@@ -132,6 +136,23 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
         </div>
       </div>
       <div>
+        <h2>Orð</h2>
+        <div class="src" role="group" aria-label="Hvaðan koma orðin">
+          <label><input type="radio" name="src" id="src-thaettir" value="thaettir" checked> Úr þáttunum</label>
+          <label><input type="radio" name="src" id="src-eigin" value="eigin"> Mín eigin orð</label>
+          <label id="src-themu-l"><input type="radio" name="src" id="src-themu" value="themu"> Þemaorð</label>
+        </div>
+      </div>
+      <div id="box-eigin" hidden>
+        <h2>Mín eigin orð</h2>
+        <textarea id="eigin" rows="9" spellcheck="true" placeholder="sól = Hún skín á daginn&#10;jökull = Stór ísbreiða uppi á fjalli&#10;hrafn = Svartur fugl sem segir krunk"></textarea>
+        <p class="note">Eitt orð í línu. Skrifaðu vísbendingu eða skýringu á eftir jafnaðarmerki. Orðaleit þarf bara orðin, en krossgáta, próf og spjöld þurfa líka skýringu.</p>
+      </div>
+      <div id="box-themu" hidden>
+        <h2>Þema</h2>
+        <select id="thema" style="width:100%"></select>
+      </div>
+      <div id="box-thaettir">
         <h2>Þættir</h2>
         <div class="mini"><button type="button" id="allir">Velja alla</button><button type="button" id="engir">Engan</button></div>
         <div class="eps" id="eps"></div>
@@ -174,8 +195,21 @@ let BANK = null, tool = "prof", seed = nyttFrae();
 function nyttFrae(){ return 1000 + Math.floor(Math.random() * 9000); }
 function rng(s){ let a = s * 2654435761 >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 function stokka(arr, r){ const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-const stakt = o => o.ord.replace(/^að /, "");
+const THEMU = {"Dýr á Íslandi": ["hestur", "kind", "kýr", "geit", "hundur", "köttur", "refur", "minkur", "hreindýr", "selur", "hvalur", "lundi", "kría", "hrafn", "rjúpa", "önd", "álft", "lax", "silungur", "mús"], "Náttúra Íslands": ["jökull", "eldfjall", "hver", "foss", "hraun", "fjall", "dalur", "fjörður", "stöðuvatn", "sandur", "mosi", "lyng", "eyja", "strönd", "hellir", "goshver", "lækur", "fjara"], "Veður": ["rigning", "snjór", "vindur", "stormur", "sól", "þoka", "hagl", "slydda", "frost", "þíða", "ský", "regnbogi", "þruma", "elding", "hiti", "logn", "hríð", "kuldi"], "Matur": ["brauð", "smjör", "ostur", "mjólk", "skyr", "fiskur", "kjöt", "súpa", "grautur", "epli", "banani", "kartafla", "gulrót", "egg", "kleina", "pönnukaka", "rúgbrauð"], "Jólin": ["jól", "kerti", "gjöf", "stjarna", "jólatré", "skraut", "laufabrauð", "smákökur", "hangikjöt", "jólakötturinn", "grýla", "leppalúði", "aðventa", "engill", "kirkja"], "Jólasveinarnir": ["stekkjastaur", "giljagaur", "stúfur", "þvörusleikir", "pottaskefill", "askasleikir", "hurðaskellir", "skyrgámur", "bjúgnakrækir", "gluggagægir", "gáttaþefur", "ketkrókur", "kertasníkir"], "Líkaminn": ["höfuð", "hár", "auga", "eyra", "nef", "munnur", "tönn", "tunga", "háls", "öxl", "olnbogi", "hönd", "fingur", "magi", "hné", "fótur", "hjarta", "lungu"], "Skólinn": ["blýantur", "strokleður", "reglustika", "bók", "tafla", "kennari", "nemandi", "stílabók", "skólataska", "frímínútur", "nesti", "yddari", "litir", "skæri", "lím", "bekkur", "stóll", "borð"], "Litir": ["rauður", "gulur", "grænn", "blár", "svartur", "hvítur", "bleikur", "fjólublár", "appelsínugulur", "brúnn", "grár", "gylltur", "silfraður"], "Íþróttir": ["fótbolti", "handbolti", "körfubolti", "sund", "glíma", "skíði", "hlaup", "fimleikar", "blak", "golf", "dans", "júdó", "karate", "skautar", "hjólreiðar", "tennis"], "Norræn goðafræði": ["óðinn", "þór", "loki", "freyja", "freyr", "baldur", "frigg", "týr", "heimdallur", "iðunn", "bragi", "sif", "njörður", "hel", "ásgarður", "miðgarður", "mjölnir", "sleipnir", "yggdrasill"], "Þjóðsagnaverur": ["tröll", "álfur", "draugur", "nykur", "marbendill", "huldufólk", "skessa", "umskiptingur", "fylgja", "sending", "afturganga", "loðsilungur", "skoffín", "skuggabaldur", "fjörulalli", "urðarköttur"]};
+let POT = [];
+const kalla = () => document.querySelector('input[name="src"]:checked').value;
+const stakt = o => o.thjappa ? o.ord.replace(/[\s-]+/g, "") : o.ord.replace(/^að /, "");
 const erStakt = o => !/\s/.test(stakt(o));
+function eiginOrd(){
+  const sed = new Set(), ut = [];
+  for (const lina of $("#eigin").value.split("\n")) {
+    const m = lina.split(/\s*[=:]\s*/); const w = (m[0] || "").trim();
+    if (!w || sed.has(w.toLowerCase())) continue;
+    sed.add(w.toLowerCase());
+    ut.push({ ord: w, skyring: m.slice(1).join(" = ").trim().replace(/\.$/, ""), flokkur: "", daemi: "", thjappa: true });
+  }
+  return ut.slice(0, 30);
+}
 
 // ---------- Val ----------
 function valdirThaettir(){ return [...document.querySelectorAll("#eps input:checked")].map(i => i.value); }
@@ -185,6 +219,8 @@ function pottur(){
   return ut;
 }
 function heitiVals(){
+  if (kalla() === "eigin") return "Orðalisti kennara";
+  if (kalla() === "themu") return "Þema: " + $("#thema").value;
   const v = valdirThaettir();
   if (v.length === BANK.thaettir.length) return "Allir þættir";
   return BANK.thaettir.filter(t => v.includes(t.slug)).map(t => t.titill).join(" · ");
@@ -192,7 +228,7 @@ function heitiVals(){
 
 // ---------- Blöð ----------
 function blad(titill, tegund, inni, lausn){
-  return `<section class="sheet"><div class="sh-top"><span class="r">Kennsluefni við þætti KrakkaRÚV</span><span class="t">${tegund} · útgáfa ${seed}</span></div>
+  return `<section class="sheet"><div class="sh-top"><span class="r">${kalla() === "thaettir" ? "Kennsluefni við þætti KrakkaRÚV" : "Vinnublað"}</span><span class="t">${tegund} · útgáfa ${seed}</span></div>
     <h3>${titill}${lausn ? '<span class="badge">Lausnir</span>' : ""}</h3><p class="sub">${esc(heitiVals())}</p>
     ${lausn ? "" : '<div class="nafn"><div>Nafn</div><div>Bekkur</div></div>'}${inni}</section>`;
 }
@@ -208,7 +244,7 @@ function prof(ord, r){
     return [nem, lau];
   }
   if (teg === "fjolval") {
-    const allt = pottur().length >= 3 ? pottur() : BANK.ord;
+    const allt = POT.length >= 3 ? POT : BANK.ord;
     const sp = ord.map(o => {
       const adrir = stokka(allt.filter(x => x.ord !== o.ord && x.skyring !== o.skyring), r).slice(0, 2);
       const val = stokka([o, ...adrir], r);
@@ -288,7 +324,7 @@ function krossgata(ord, r){
   const listi = d => sett.filter(s => s.d === d).sort((a, b) => a.n - b.n).map(s => `<li><b>${s.n}.</b><span>${esc(cap(s.o.skyring))} <span style="color:#5b5468">(${s.w.length})</span></span></li>`).join("");
   const vis = `<div class="clues"><div><h4>Lárétt</h4><ol>${listi(0)}</ol></div><div><h4>Lóðrétt</h4><ol>${listi(1)}</ol></div></div>`;
   const vantar = ord.length - sett.length;
-  return [`<p class="inst">Leystu krossgátuna. Talan í svigum segir hve margir stafir eru í orðinu. Sagnorð eru skrifuð án „að“.</p>${teikna(false)}${vis}`,
+  return [`<p class="inst">Leystu krossgátuna. Talan í svigum segir hve margir stafir eru í orðinu.${kalla() === "thaettir" ? " Sagnorð eru skrifuð án „að“." : ""}</p>${teikna(false)}${vis}`,
           teikna(true), vantar];
 }
 
@@ -297,7 +333,7 @@ const STAFIR = "AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ";
 function ordaleit(ord, r){
   const ord2 = ord.map(o => ({ o, w: stakt(o).toUpperCase() }));
   const lengst = Math.max(...ord2.map(x => x.w.length));
-  const N = Math.min(17, Math.max(12, lengst + 1));
+  const N = Math.min(17, Math.max(12, lengst + 3));
   const att = $("#erfitt").checked ? [[1,0],[0,1],[1,1],[-1,0],[0,-1],[1,-1],[-1,-1],[-1,1]] : [[1,0],[0,1],[1,1]];
   let best = null;
   for (let t = 0; t < 30; t++) {
@@ -326,7 +362,7 @@ function ordaleit(ord, r){
   const tafla = lausn => `<div class="ws" style="--c:${c}px;grid-template-columns:repeat(${N},${c}px)">${fylling.flat().map((ch, i) => `<div class="${lausn && hit.has(i) ? "hit" : ""}">${ch}</div>`).join("")}</div>`;
   const listi = `<div class="wlist">${sett.map(s => `<span>${esc(s.w)}</span>`).sort().join("")}</div>`;
   const att_txt = $("#erfitt").checked ? "Orðin geta legið í allar áttir, líka afturábak." : "Orðin liggja lárétt, lóðrétt eða á ská niður til hægri.";
-  return [`<p class="inst">Finndu orðin í stafatöflunni. ${att_txt} Sagnorð eru skrifuð án „að“.</p>${tafla(false)}${listi}`, tafla(true) + listi, ord2.length - sett.length];
+  return [`<p class="inst">Finndu orðin í stafatöflunni. ${att_txt}${kalla() === "thaettir" ? " Sagnorð eru skrifuð án „að“." : ""}</p>${tafla(false)}${listi}`, tafla(true) + listi, ord2.length - sett.length];
 }
 
 // ---------- Orðaspjöld ----------
@@ -341,9 +377,17 @@ function spjold(ord){
 
 // ---------- Teikna ----------
 function teikna(){
-  const pot = pottur(), krefst = ["kross", "leit"].includes(tool);
+  if (tool !== "leit" && kalla() === "themu") $("#src-thaettir").checked = true;
+  const src = kalla(), krefst = ["kross", "leit"].includes(tool), thurfaSk = ["prof", "kross", "spjold"].includes(tool);
+  $("#src-themu-l").hidden = tool !== "leit";
+  $("#box-eigin").hidden = src !== "eigin"; $("#box-themu").hidden = src !== "themu"; $("#box-thaettir").hidden = src !== "thaettir";
+  let pot = src === "thaettir" ? pottur() : src === "eigin" ? eiginOrd() : (THEMU[$("#thema").value] || []).map(w => ({ ord: w, skyring: "", flokkur: "", daemi: "", thjappa: true }));
+  POT = pot;
+  let vantarSk = 0;
+  if (src === "eigin" && thurfaSk) { const m = pot.filter(o => o.skyring); vantarSk = pot.length - m.length; pot = m; }
   const nothaeft = krefst ? pot.filter(erStakt) : pot;
-  const fj = +$("#fjoldi").value;
+  const fj = src === "thaettir" ? +$("#fjoldi").value : nothaeft.length;
+  $("#fjoldi").closest(".row").hidden = src !== "thaettir";
   $("#fjoldi-o").textContent = fj;
   $("#ver").textContent = seed;
   $("#opt-prof").hidden = tool !== "prof";
@@ -351,7 +395,9 @@ function teikna(){
   $("#opt-erf").hidden = tool !== "leit";
   $("#laus").textContent = `${nothaeft.length} orð í boði${krefst ? " (aðeins stök orð passa)" : ""}.`;
   const S = $("#sheets");
-  if (nothaeft.length < 3) { S.innerHTML = `<p class="empty">Veldu fleiri þætti. Það þarf að minnsta kosti þrjú orð.</p>`; return; }
+  if (tool === "eydur" && src !== "thaettir") { S.innerHTML = `<p class="empty">„Fylltu í eyðurnar“ notar dæmasetningarnar úr þáttunum og virkar því bara með orðum úr þáttunum.</p>`; return; }
+  if (nothaeft.length < 3) {
+    S.innerHTML = `<p class="empty">${src === "eigin" ? (vantarSk ? "Skrifaðu skýringu á eftir jafnaðarmerki við að minnsta kosti þrjú orð, til dæmis: sól = Hún skín á daginn." : "Skrifaðu að minnsta kosti þrjú orð, eitt í hverja línu.") : "Veldu fleiri þætti. Það þarf að minnsta kosti þrjú orð."}</p>`; return; }
   const r = rng(seed * 31 + ["prof","eydur","kross","leit","spjold"].indexOf(tool));
   const ord = stokka(nothaeft, r).slice(0, Math.min(fj, nothaeft.length));
   const L = $("#lausnir").checked;
@@ -361,7 +407,8 @@ function teikna(){
   if (tool === "kross") { const [n, l, v] = krossgata(ord, r); vantar = v; html = blad("Krossgáta", "Vinnublað", n) + (L ? blad("Krossgáta", "Lausnir", l, true) : ""); }
   if (tool === "leit") { const [n, l, v] = ordaleit(ord, r); vantar = v; html = blad("Orðaleit", "Vinnublað", n) + (L ? blad("Orðaleit", "Lausnir", l, true) : ""); }
   if (tool === "spjold") { html = spjold(ord).map((p, i) => blad("Orðaspjöld", `Spjöld ${i + 1}`, `<p class="inst">Klipptu spjöldin út eftir brotnu línunum. Orðið er vinstra megin og skýringin hægra megin.</p>${p}`, true).replace('<span class="badge">Lausnir</span>', "")).join(""); }
-  if (vantar > 0) html = `<p class="warnmsg">${vantar} orð komust ekki fyrir. Smelltu á „Ný útgáfa“ eða fækkaðu orðum.</p>` + html;
+  if (vantarSk > 0) html = `<p class="warnmsg">${vantarSk} ${vantarSk === 1 ? "orði" : "orðum"} án skýringar var sleppt. Bættu við skýringu á eftir jafnaðarmerki til að hafa þau með.</p>` + html;
+  if (vantar > 0) html = `<p class="warnmsg">${vantar} orð ${vantar === 1 ? "komst" : "komust"} ekki fyrir. Smelltu á „Ný útgáfa“ eða fækkaðu orðum.</p>` + html;
   S.innerHTML = html;
 }
 
@@ -374,6 +421,8 @@ fetch("../ordabanki.json").then(r => r.json()).then(b => {
     h += `<label><input type="checkbox" id="th-${t.slug}" value="${t.slug}" checked> ${esc(t.titill)}</label>`;
   }
   $("#eps").innerHTML = h;
+  $("#thema").innerHTML = Object.keys(THEMU).map(k => `<option>${esc(k)}</option>`).join("");
+  try { const v = localStorage.getItem("kennaratol-eigin"); if (v) $("#eigin").value = v; } catch (_) {}
   $("#eps").addEventListener("change", teikna);
   teikna();
 }).catch(() => { $("#sheets").innerHTML = `<p class="empty">Ekki tókst að sækja orðabankann. Endurhlaðið síðunni.</p>`; });
@@ -383,7 +432,9 @@ document.querySelectorAll("#tools button").forEach(b => b.addEventListener("clic
   document.querySelectorAll("#tools button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
   teikna();
 }));
-["#fjoldi", "#tegund", "#ordabanki", "#erfitt", "#lausnir"].forEach(s => $(s).addEventListener("input", teikna));
+["#fjoldi", "#tegund", "#ordabanki", "#erfitt", "#lausnir", "#thema"].forEach(s => $(s).addEventListener("input", teikna));
+document.querySelectorAll('input[name="src"]').forEach(i => i.addEventListener("change", teikna));
+let bidEigin; $("#eigin").addEventListener("input", () => { try { localStorage.setItem("kennaratol-eigin", $("#eigin").value); } catch (_) {} clearTimeout(bidEigin); bidEigin = setTimeout(teikna, 350); });
 $("#allir").onclick = () => { document.querySelectorAll("#eps input").forEach(i => i.checked = true); teikna(); };
 $("#engir").onclick = () => { document.querySelectorAll("#eps input").forEach(i => i.checked = false); teikna(); };
 $("#ny").onclick = () => { seed = nyttFrae(); teikna(); };
