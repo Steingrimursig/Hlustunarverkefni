@@ -1,0 +1,538 @@
+{
+ "thaettir": [
+  {
+   "slug": "draugaskip",
+   "titill": "Þjóðsaga um draugaskip",
+   "rod": "Þjóðsögukistan",
+   "sida": "thjodsogur/draugaskip/index.html"
+  },
+  {
+   "slug": "dvergar",
+   "titill": "Þjóðsaga um dverga og dýrgripi goðanna",
+   "rod": "Þjóðsögukistan",
+   "sida": "thjodsogur/dvergar/index.html"
+  },
+  {
+   "slug": "hamar-thors",
+   "titill": "Þjóðsaga um týndan hamar og Þór í dulargervi",
+   "rod": "Þjóðsögukistan",
+   "sida": "thjodsogur/hamar-thors/index.html"
+  },
+  {
+   "slug": "gullkambur",
+   "titill": "Þjóðsögur um gullkamb, selfólk og banana í Brasilíu",
+   "rod": "Þjóðsögukistan",
+   "sida": "thjodsogur/gullkambur/index.html"
+  },
+  {
+   "slug": "babajaka",
+   "titill": "Þjóðsögur um kofa með hænsnafætur, umskipting og stórhættulegan kött",
+   "rod": "Þjóðsögukistan",
+   "sida": "thjodsogur/babajaka/index.html"
+  },
+  {
+   "slug": "nykur",
+   "titill": "Þjóðsögur um nykur og glímu við draug",
+   "rod": "Þjóðsögukistan",
+   "sida": "thjodsogur/nykur/index.html"
+  },
+  {
+   "slug": "anna-frank",
+   "titill": "Anna Frank",
+   "rod": "Í ljósi krakkasögunnar",
+   "sida": "sagan/anna-frank/index.html"
+  }
+ ],
+ "ord": [
+  {
+   "ord": "að gefa upp",
+   "flokkur": "orðasamband",
+   "skyring": "að segja frá því hvar einhver er í felum eða hvað hann hefur gert; að koma upp um einhvern",
+   "daemi": "Enginn veit með vissu hver **gaf** fjölskylduna **upp**.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "aðhyllast",
+   "flokkur": "sagnorð",
+   "skyring": "að fylgja eða styðja ákveðna trú eða skoðun",
+   "daemi": "Hún **aðhylltist** þá skoðun að allir ættu að njóta sömu réttinda.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "óréttlæti",
+   "flokkur": "nafnorð",
+   "skyring": "það þegar fólk er beitt ósanngirni og fær ekki það sem það á rétt á",
+   "daemi": "Anna skrifaði um **óréttlætið** sem gyðingar voru beittir.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "að ýta undir eitthvað",
+   "flokkur": "orðasamband",
+   "skyring": "að auka eitthvað eða hvetja til þess",
+   "daemi": "Áróðurinn **ýtti undir** hatur á milli hópa.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "átök",
+   "flokkur": "nafnorð",
+   "skyring": "barátta eða stríð á milli hópa eða þjóða",
+   "daemi": "**Átökin** stóðu yfir í mörg ár.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "ofsóknir",
+   "flokkur": "nafnorð",
+   "skyring": "þegar hópur fólks er beittur ofbeldi, hótunum eða órétti, oft vegna trúar eða uppruna",
+   "daemi": "Margir flúðu heimaland sitt vegna **ofsókna**.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "hlutlaus",
+   "flokkur": "lýsingarorð",
+   "skyring": "sem tekur ekki afstöðu með neinum; tekur ekki þátt í stríði",
+   "daemi": "Sviss var **hlutlaust** land í seinni heimsstyrjöldinni.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "að trúa einhverjum fyrir einhverju",
+   "flokkur": "orðasamband",
+   "skyring": "að segja einhverjum leyndarmál af því að maður treystir honum",
+   "daemi": "Anna **trúði** dagbókinni **fyrir** leyndustu hugsunum sínum.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "ráðabrugg",
+   "flokkur": "nafnorð",
+   "skyring": "leynileg áætlun, oft um að gera eitthvað illt",
+   "daemi": "Þjófarnir hvísluðust á um **ráðabrugg** sitt.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "annars hugar",
+   "flokkur": "orðasamband",
+   "skyring": "að vera að hugsa um eitthvað annað og taka ekki eftir því sem er að gerast",
+   "daemi": "Hún var **annars hugar** og heyrði ekki þegar kennarinn spurði hana.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "vistir",
+   "flokkur": "nafnorð",
+   "skyring": "matur og annað sem fólk þarf til að lifa",
+   "daemi": "Hjálparfólkið færði fjölskyldunni **vistir** í felustaðinn.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "þjáningar",
+   "flokkur": "nafnorð",
+   "skyring": "mikill sársauki eða mikil vanlíðan",
+   "daemi": "Stríðið olli milljónum manna miklum **þjáningum**.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "að renna sitt skeið",
+   "flokkur": "orðasamband",
+   "skyring": "að ljúka; koma að endalokum",
+   "daemi": "Gamla tréð hafði **runnið sitt skeið** og féll í storminum.",
+   "thattur": "anna-frank"
+  },
+  {
+   "ord": "kotbóndi",
+   "flokkur": "nafnorð",
+   "skyring": "fátækur bóndi sem býr á litlum bæ",
+   "daemi": "**Kotbóndinn** átti aðeins eina kú og fáeinar kindur.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "andstyggilegt",
+   "flokkur": "lýsingarorð",
+   "skyring": "mjög ógeðslegt eða illgjarnt",
+   "daemi": "Nornin hló **andstyggilega** og nuddaði saman höndunum.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "að óhlýðnast",
+   "flokkur": "sagnorð",
+   "skyring": "að gera ekki það sem manni er sagt að gera",
+   "daemi": "Krakkarnir **óhlýðnuðust** og fóru inn í skóginn.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "að taka af skarið",
+   "flokkur": "orðasamband",
+   "skyring": "að ákveða sig og hefjast handa þegar aðrir hika",
+   "daemi": "Loks **tók** stelpan **af skarið** og bankaði á dyrnar.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "að segja einhverjum allt af létta",
+   "flokkur": "orðasamband",
+   "skyring": "að segja einhverjum alla söguna, án þess að leyna neinu",
+   "daemi": "Drengurinn **sagði** ömmu sinni **allt af létta**.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "að veigra sér við einhverju",
+   "flokkur": "orðasamband",
+   "skyring": "að hika við eða forðast að gera eitthvað",
+   "daemi": "Hún **veigraði sér við** að ganga ein yfir dimman skóginn.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "að rjúka á dyr",
+   "flokkur": "orðasamband",
+   "skyring": "að fara skyndilega og í reiði út úr húsi",
+   "daemi": "Bóndinn **rauk á dyr** og skellti hurðinni á eftir sér.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "hjarir",
+   "flokkur": "nafnorð",
+   "skyring": "málmstykki sem hurð eða hlið snýst á",
+   "daemi": "Hliðið ískraði á ryðguðum **hjörunum**.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "vælinn",
+   "flokkur": "lýsingarorð",
+   "skyring": "sem vælir og kvartar mikið",
+   "daemi": "Barnið var **vælið** og vildi ekki sofna.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "grýta",
+   "flokkur": "nafnorð",
+   "skyring": "pottur; gamalt orð",
+   "daemi": "Mamman hrærði í litlu **grýtunni** yfir eldinum.",
+   "thattur": "babajaka"
+  },
+  {
+   "ord": "gnoð",
+   "flokkur": "nafnorð",
+   "skyring": "skip; gamalt orð úr skáldamáli",
+   "daemi": "Gamla **gnoðin** lá á hliðinni í fjörunni.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "halur",
+   "flokkur": "nafnorð",
+   "skyring": "maður; gamalt orð úr skáldamáli",
+   "daemi": "Einn **halur** gekk niður að sjónum í myrkrinu.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "fjör",
+   "flokkur": "nafnorð",
+   "skyring": "líf; að fara burt með fjörvi merkir að komast lífs af",
+   "daemi": "Sjómaðurinn komst í land með **fjörvi** eftir storminn.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "að taka til fótanna",
+   "flokkur": "orðasamband",
+   "skyring": "að hlaupa af stað í flýti; flýja",
+   "daemi": "Þegar hurðin skall aftur **tók** Jón **til fótanna** og leit ekki við.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "að frísa",
+   "flokkur": "sagnorð",
+   "skyring": "þegar hestur blæs hátt út um nasirnar, oft af hræðslu eða æsingi",
+   "daemi": "Hesturinn **frísaði** og neitaði að ganga lengra inn í dimman dalinn.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "bóngóður",
+   "flokkur": "lýsingarorð",
+   "skyring": "fús til að gera öðrum greiða; hjálpsamur, greiðvikinn",
+   "daemi": "Gamli bóndinn var **bóngóður** og leyfði ferðalöngunum að gista um nóttina.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "að vekja athygli",
+   "flokkur": "orðasamband",
+   "skyring": "að fá aðra til að taka eftir einhverju",
+   "daemi": "Flöktandi ljós í glugga eyðibýlisins **vakti athygli** hennar.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "úr augnsýn",
+   "flokkur": "orðasamband",
+   "skyring": "þangað sem ekki er lengur hægt að sjá; horfinn sjónum",
+   "daemi": "Hvíta veran leið yfir túnið og hvarf **úr augnsýn** inn í þokuna.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "ófrýnilegur",
+   "flokkur": "lýsingarorð",
+   "skyring": "ljótur og óhugnanlegur útlits; skuggalegur",
+   "daemi": "Í dyrunum stóð **ófrýnilegur** maður með tómt augnaráð.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "fyrir sitt litla líf",
+   "flokkur": "orðasamband",
+   "skyring": "alls ekki, ekki fyrir nokkurn mun; notað með neitun",
+   "daemi": "Sigga vildi ekki fara inn í kirkjugarðinn um miðnætti **fyrir sitt litla líf**.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "alfaravegur",
+   "flokkur": "nafnorð",
+   "skyring": "fjölfarinn vegur sem flestir fara um; aðalleið",
+   "daemi": "Bærinn stóð langt frá **alfaravegi** og þangað kom sjaldan nokkur maður.",
+   "thattur": "draugaskip"
+  },
+  {
+   "ord": "geithafur",
+   "flokkur": "nafnorð",
+   "skyring": "karlkyns geit",
+   "daemi": "**Geithafurinn** stangaði hliðið og jarmaði hátt.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "að aðlagast",
+   "flokkur": "sagnorð",
+   "skyring": "að venjast nýjum aðstæðum og laga sig að þeim",
+   "daemi": "Það tók nýja nemandann nokkrar vikur að **aðlagast** bekknum.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "yfirnáttúrulegt",
+   "flokkur": "lýsingarorð",
+   "skyring": "eitthvað sem ekki er hægt að skýra með lögmálum náttúrunnar, til dæmis galdrar og töfrar",
+   "daemi": "Hamarinn hafði **yfirnáttúrulega** krafta og hitti alltaf í mark.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "að merja",
+   "flokkur": "sagnorð",
+   "skyring": "að kremja eitthvað svo það fletjist út eða skaddist",
+   "daemi": "Steinninn féll á fótinn á honum og **marði** tærnar.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "lymskulegur",
+   "flokkur": "lýsingarorð",
+   "skyring": "slægur og undirförull; sem reynir að ná sínu fram með brögðum",
+   "daemi": "Loki brosti **lymskulega** og lagði á ráðin.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "hér um slóðir",
+   "flokkur": "orðasamband",
+   "skyring": "hérna á þessu svæði; hér í grenndinni",
+   "daemi": "Enginn **hér um slóðir** hafði séð jafn fagran grip.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "að vera djúpt sokkinn",
+   "flokkur": "orðasamband",
+   "skyring": "að vera svo upptekinn af einhverju að maður tekur ekki eftir neinu öðru",
+   "daemi": "Smiðurinn **var** svo **djúpt sokkinn** í verkið að hann heyrði ekki þegar kallað var á hann.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "físibelgur",
+   "flokkur": "nafnorð",
+   "skyring": "verkfæri sem blæs lofti á glóð svo eldurinn verði heitari; notað í smiðjum",
+   "daemi": "Smiðurinn þrýsti á **físibelginn** og glóðin lifnaði við.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "dýrgripur",
+   "flokkur": "nafnorð",
+   "skyring": "afar verðmætur og fágætur hlutur",
+   "daemi": "Kórónan var mesti **dýrgripur** konungsins.",
+   "thattur": "dvergar"
+  },
+  {
+   "ord": "að býtta",
+   "flokkur": "sagnorð",
+   "skyring": "að skipta á hlutum við einhvern",
+   "daemi": "Strákarnir **býttuðu** á fótboltamyndum í frímínútunum.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "að gera sér lítið fyrir",
+   "flokkur": "orðasamband",
+   "skyring": "að gera eitthvað án þess að hika, eins og það sé ekkert mál",
+   "daemi": "Hún **gerði sér lítið fyrir** og stökk yfir lækinn.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "að koma tómhentur heim",
+   "flokkur": "orðasamband",
+   "skyring": "að koma heim án þess að hafa fengið neitt",
+   "daemi": "Veiðimaðurinn **kom tómhentur heim** eftir langan dag.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "vistir",
+   "flokkur": "nafnorð",
+   "skyring": "matur og annað sem þarf í ferðalag",
+   "daemi": "Þau pökkuðu **vistum** til þriggja daga.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "hylur",
+   "flokkur": "nafnorð",
+   "skyring": "djúpur staður í á eða læk",
+   "daemi": "Silungurinn faldi sig í dimmum **hylnum**.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "að verða hugfanginn",
+   "flokkur": "orðasamband",
+   "skyring": "að heillast af einhverju eða einhverjum",
+   "daemi": "Bóndinn **varð hugfanginn** af fallegu stúlkunni í fjörunni.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "að komast í uppnám",
+   "flokkur": "orðasamband",
+   "skyring": "að verða mjög æstur, hræddur eða órólegur",
+   "daemi": "Allt þorpið **komst í uppnám** þegar fréttirnar bárust.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "að þyrma",
+   "flokkur": "sagnorð",
+   "skyring": "að hlífa einhverjum; láta einhvern lifa",
+   "daemi": "Hún bað hann um að **þyrma** dýrunum.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "snjallræði",
+   "flokkur": "nafnorð",
+   "skyring": "góð og sniðug hugmynd",
+   "daemi": "Það var **snjallræði** að fela lykilinn undir steininum.",
+   "thattur": "gullkambur"
+  },
+  {
+   "ord": "krúnudjásn",
+   "flokkur": "nafnorð",
+   "skyring": "dýrmætustu gripir konungsfjölskyldu, til dæmis kóróna og veldissproti",
+   "daemi": "**Krúnudjásnin** eru geymd í rammgerðum turni.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "bræði",
+   "flokkur": "nafnorð",
+   "skyring": "ofsaleg reiði",
+   "daemi": "Í **bræði** sinni barði hann hnefanum í borðið.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "harmleikur",
+   "flokkur": "nafnorð",
+   "skyring": "sorglegur atburður eða saga sem endar illa",
+   "daemi": "Skipsskaðinn var mikill **harmleikur** fyrir þorpið.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "að finna út úr einhverju",
+   "flokkur": "orðasamband",
+   "skyring": "að leysa vanda eða komast að niðurstöðu",
+   "daemi": "Við verðum að **finna út úr** því hver tók lykilinn.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "brúðarklæði",
+   "flokkur": "nafnorð",
+   "skyring": "fötin sem brúður klæðist í brúðkaupi",
+   "daemi": "Hún klæddist hvítum **brúðarklæðum** og bar slör.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "hörundsár",
+   "flokkur": "lýsingarorð",
+   "skyring": "sem móðgast auðveldlega; viðkvæmur fyrir gríni eða gagnrýni",
+   "daemi": "Hann var svo **hörundsár** að hann þoldi ekki minnsta grín.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "orðspor",
+   "flokkur": "nafnorð",
+   "skyring": "það álit sem aðrir hafa á einhverjum",
+   "daemi": "Bakaríið hafði gott **orðspor** og þangað kom fólk úr öllum áttum.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "að endurheimta",
+   "flokkur": "sagnorð",
+   "skyring": "að fá aftur eitthvað sem maður hafði misst",
+   "daemi": "Lögreglunni tókst að **endurheimta** málverkið sem var stolið.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "uppástunga",
+   "flokkur": "nafnorð",
+   "skyring": "tillaga eða hugmynd sem einhver ber fram",
+   "daemi": "Kennarinn bað um **uppástungur** að nafni á bekkjarblaðið.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "groddaralegur",
+   "flokkur": "lýsingarorð",
+   "skyring": "ruddalegur og grófur í framkomu",
+   "daemi": "Jötunninn hló **groddaralega** og þurrkaði sér um munninn með erminni.",
+   "thattur": "hamar-thors"
+  },
+  {
+   "ord": "að lokka",
+   "flokkur": "sagnorð",
+   "skyring": "að fá einhvern til að koma eða gera eitthvað með því að gera það spennandi eða freistandi",
+   "daemi": "Nykurinn reyndi að **lokka** börnin niður að vatninu.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "afturganga",
+   "flokkur": "nafnorð",
+   "skyring": "draugur; látin manneskja sem gengur aftur",
+   "daemi": "Fólkið í sveitinni trúði því að **afturganga** byggi í gamla bænum.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "dyggur",
+   "flokkur": "lýsingarorð",
+   "skyring": "trúr og traustur; sem bregst ekki",
+   "daemi": "Hundurinn var **dyggur** vinur og fylgdi húsbónda sínum hvert sem hann fór.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "að hafa mætur á einhverju",
+   "flokkur": "orðasamband",
+   "skyring": "að þykja vænt um eitthvað eða kunna vel að meta það",
+   "daemi": "Amma **hafði** miklar **mætur á** gömlu sögunum.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "með herkjum",
+   "flokkur": "orðasamband",
+   "skyring": "með miklum erfiðismunum; naumlega",
+   "daemi": "Honum tókst **með herkjum** að draga bátinn upp í fjöruna.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "að vera óþekkjanlegur",
+   "flokkur": "orðasamband",
+   "skyring": "að hafa breyst svo mikið að enginn þekkir mann",
+   "daemi": "Í dulargervinu **var** hann alveg **óþekkjanlegur**.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "krumla",
+   "flokkur": "nafnorð",
+   "skyring": "stór og ljót hönd; loppa",
+   "daemi": "Köld **krumla** greip í öxlina á honum í myrkrinu.",
+   "thattur": "nykur"
+  },
+  {
+   "ord": "að geifla sig",
+   "flokkur": "orðasamband",
+   "skyring": "að gretta sig; skekkja andlitið",
+   "daemi": "Strákurinn **geiflaði sig** þegar hann smakkaði súra drykkinn.",
+   "thattur": "nykur"
+  }
+ ]
+}
